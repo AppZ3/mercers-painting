@@ -2269,7 +2269,9 @@ nav :focus-visible {
             </div>
         </div>
 
-        <form class="contact-form reveal d1" id="quoteForm" novalidate>
+        <form class="contact-form reveal d1" id="quoteForm" name="quote-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
+            <input type="hidden" name="form-name" value="quote-enquiry">
+            <p hidden><input name="bot-field"></p>
             <div class="form-row">
                 <div class="fg">
                     <label for="f-fn">First Name</label>
@@ -2659,10 +2661,28 @@ function initForm() {
 
         if (!ok) return;
 
-        btn.textContent = "Sent — We'll be in touch.";
-        btn.style.background = '#4a7c59';
-        btn.style.color = '#fff';
+        btn.textContent = 'Sending…';
         btn.disabled = true;
+
+        const data = new FormData(form);
+
+        fetch('/', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+            body: new URLSearchParams(data).toString(),
+        })
+        .then(() => {
+            btn.textContent = "Sent — We'll be in touch.";
+            btn.style.background = '#4a7c59';
+            btn.style.color = '#fff';
+            form.reset();
+        })
+        .catch(() => {
+            btn.textContent = 'Something went wrong — please try again.';
+            btn.style.background = '#c0392b';
+            btn.style.color = '#fff';
+            btn.disabled = false;
+        });
     });
 }
 
