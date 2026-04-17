@@ -92,19 +92,20 @@ body {
 /* "Precision Painting" — dominant main title */
 .pre-sub {
     font-family: var(--sans);
-    font-size: clamp(20px, 7vw, 100px);
+    font-size: clamp(16px, 5.5vw, 100px);
     font-weight: 300;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.85);
     display: flex;
     align-items: baseline;
     justify-content: center;
-    flex-wrap: wrap;
+    white-space: nowrap;
     text-align: center;
     width: 100%;
     padding: 0 16px;
     box-sizing: border-box;
+    overflow: hidden;
 }
 
 .pre-sub span {
@@ -449,6 +450,18 @@ nav.scrolled {
     pointer-events: all;
     opacity: 0;
     animation: fadeUp 0.7s 3.05s var(--spring) forwards;
+}
+
+.hero-top-actions {
+    position: absolute;
+    top: 90px;
+    right: 64px;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    opacity: 0;
+    animation: fadeUp 0.7s 2.6s var(--spring) forwards;
 }
 
 /* Page navigation UI (right side) */
@@ -1546,6 +1559,14 @@ nav :focus-visible {
 }
 
 @media (max-width: 600px) {
+    /* Hide custom cursor on mobile */
+    #c-dot, #c-ring { display: none !important; }
+    * { cursor: auto !important; }
+
+    /* Hero top actions — stack below nav on mobile */
+    .hero-top-actions { top: 80px; right: 16px; gap: 10px; }
+    .hero-top-actions .btn { font-size: 12px; padding: 10px 16px; }
+
     /* Nav */
     nav, nav.scrolled { padding-left: 16px; padding-right: 16px; }
     .nav-logo-sub { font-size: 15px; letter-spacing: 0.1em; }
@@ -1750,10 +1771,7 @@ nav :focus-visible {
         <p class="hero-sub">
             Premium residential, commercial and industrial painting across Lennox Head, Ballina and the Northern Rivers.
         </p>
-        <div class="hero-actions">
-            <a href="#contact" class="btn btn-fill magnetic">Request a Quote</a>
-            <a href="#projects" class="btn btn-ghost magnetic">View Our Work</a>
-        </div>
+
     </div>
 
     <!-- Page-turn nav dots -->
@@ -1767,6 +1785,12 @@ nav :focus-visible {
 
     <!-- Page counter -->
     <div class="page-counter" id="pageCounter">01 / 05</div>
+
+    <!-- Top-right hero buttons -->
+    <div class="hero-top-actions">
+        <a href="#contact" class="btn btn-fill magnetic">Request a Quote</a>
+        <a href="#projects" class="btn btn-ghost magnetic">View Our Work</a>
+    </div>
 
     <!-- Scroll indicator -->
     <div class="hero-scroll" aria-hidden="true">
