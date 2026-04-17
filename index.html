@@ -757,7 +757,25 @@ nav.scrolled {
 ═══════════════════════════════════════════════════════════════ */
 #services {
     background: var(--charcoal);
+    background-image: url('services-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    position: relative;
     padding: 130px 64px;
+}
+
+#services::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 20, 20, 0.82);
+    pointer-events: none;
+}
+
+#services > * {
+    position: relative;
+    z-index: 1;
 }
 
 .svc-head {
