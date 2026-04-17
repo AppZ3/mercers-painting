@@ -845,7 +845,7 @@ nav.scrolled {
     font-family: var(--serif);
     font-size: 72px;
     font-weight: 400;
-    color: rgba(255,255,255,0.05);
+    color: rgba(255,255,255,0.15);
     line-height: 1;
     margin-bottom: 26px;
 }
@@ -863,7 +863,7 @@ nav.scrolled {
     font-size: 15px;
     font-weight: 300;
     line-height: 1.8;
-    color: rgba(255,255,255,0.65);
+    color: rgba(255,255,255,0.88);
     margin-bottom: 30px;
 }
 
@@ -877,9 +877,9 @@ nav.scrolled {
     font-size: 14px;
     font-weight: 400;
     letter-spacing: 0.03em;
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.82);
     padding: 10px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid rgba(255,255,255,0.18);
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1095,8 +1095,29 @@ nav.scrolled {
 ═══════════════════════════════════════════════════════════════ */
 #testimonials {
     padding: 130px 64px;
+    max-width: unset;
+    margin: 0;
+    position: relative;
+    background-image: url('testimonials-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+#testimonials::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.82);
+    pointer-events: none;
+}
+
+#testimonials > * {
+    position: relative;
+    z-index: 1;
     max-width: 1440px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .test-grid {
