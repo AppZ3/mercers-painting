@@ -1108,7 +1108,7 @@ nav.scrolled {
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255,255,255,0.45);
+    background: rgba(0,0,0,0.15);
     pointer-events: none;
 }
 
@@ -1128,7 +1128,10 @@ nav.scrolled {
 }
 
 .test-card {
-    background: var(--cream);
+    background: rgba(10, 10, 10, 0.72);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,255,255,0.1);
     padding: 48px 42px;
     position: relative;
     display: flex;
@@ -1138,7 +1141,7 @@ nav.scrolled {
 
 .test-card:hover {
     transform: translateY(-4px);
-    box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.4);
 }
 
 .test-card::before {
@@ -1168,7 +1171,7 @@ nav.scrolled {
     font-size: 18px;
     font-style: italic;
     line-height: 1.75;
-    color: var(--charcoal);
+    color: rgba(255,255,255,0.92);
     margin-bottom: 32px;
     position: relative;
     z-index: 1;
@@ -1193,7 +1196,7 @@ nav.scrolled {
 .author-name {
     font-size: 15px;
     font-weight: 600;
-    color: var(--charcoal);
+    color: #fff;
 }
 
 .author-sep {
@@ -1204,7 +1207,7 @@ nav.scrolled {
 .author-loc {
     font-size: 14px;
     font-weight: 400;
-    color: #666;
+    color: rgba(255,255,255,0.6);
     margin-top: 2px;
 }
 
@@ -2151,7 +2154,7 @@ nav :focus-visible {
 ═══════════════════════════════════════════════════════════════ -->
 <section id="testimonials" aria-labelledby="test-h">
     <p class="s-label reveal">What Clients Say</p>
-    <h2 class="s-title" id="test-h">
+    <h2 class="s-title light" id="test-h">
         <span class="line-wrap"><span class="line-inner">The measure of</span></span>
         <span class="line-wrap"><span class="line-inner">our <em>reputation.</em></span></span>
     </h2>
