@@ -452,17 +452,6 @@ nav.scrolled {
     animation: fadeUp 0.7s 3.05s var(--spring) forwards;
 }
 
-.hero-top-actions {
-    position: absolute;
-    top: 90px;
-    right: 64px;
-    z-index: 100;
-    display: flex;
-    align-items: center;
-    gap: 16px;
-    opacity: 0;
-    animation: fadeUp 0.7s 2.6s var(--spring) forwards;
-}
 
 /* Page navigation UI (right side) */
 .page-nav {
@@ -745,7 +734,7 @@ nav.scrolled {
     width: 100%;
     aspect-ratio: 3/4;
     display: block;
-    background-image: url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&h=1200');
+    background-image: url('about-main.webp');
     background-size: cover;
     background-position: center;
 }
@@ -756,7 +745,7 @@ nav.scrolled {
     left: -36px;
     width: 52%;
     aspect-ratio: 1;
-    background-image: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&h=600');
+    background-image: url('about-accent.jpeg');
     background-size: cover;
     background-position: center;
     border: 6px solid var(--off-white);
@@ -1563,9 +1552,6 @@ nav :focus-visible {
     #c-dot, #c-ring { display: none !important; }
     * { cursor: auto !important; }
 
-    /* Hero top actions — stack below nav on mobile */
-    .hero-top-actions { top: 80px; right: 16px; gap: 10px; }
-    .hero-top-actions .btn { font-size: 12px; padding: 10px 16px; }
 
     /* Nav */
     nav, nav.scrolled { padding-left: 16px; padding-right: 16px; }
@@ -1785,12 +1771,6 @@ nav :focus-visible {
 
     <!-- Page counter -->
     <div class="page-counter" id="pageCounter">01 / 05</div>
-
-    <!-- Top-right hero buttons -->
-    <div class="hero-top-actions">
-        <a href="#contact" class="btn btn-fill magnetic">Request a Quote</a>
-        <a href="#projects" class="btn btn-ghost magnetic">View Our Work</a>
-    </div>
 
     <!-- Scroll indicator -->
     <div class="hero-scroll" aria-hidden="true">
