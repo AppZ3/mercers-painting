@@ -1,0 +1,2643 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercer's Precision Painting | Lennox Head, NSW</title>
+    <meta name="description" content="Premium residential, commercial and industrial painting across Lennox Head, Ballina and the Northern Rivers.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+/* ═══════════════════════════════════════════════════════════════
+   RESET & ROOT
+═══════════════════════════════════════════════════════════════ */
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+    --black:      #0a0a0a;
+    --charcoal:   #1c1c1c;
+    --gold:       #c4a882;
+    --gold-l:     #d8c8ae;
+    --cream:      #f5f0e9;
+    --off-white:  #faf8f5;
+    --gray-mid:   #8a8a8a;
+    --gray-light: #dedad3;
+    --serif:      'Playfair Display', Georgia, serif;
+    --sans:       'Inter', system-ui, sans-serif;
+    --ease:       cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --spring:     cubic-bezier(0.16, 1, 0.3, 1);
+    --t:          0.4s;
+}
+
+html { scroll-behavior: smooth; scrollbar-gutter: stable; overflow-y: scroll; }
+
+body {
+    font-family: var(--sans);
+    background: var(--off-white);
+    color: var(--charcoal);
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    cursor: none; /* hide default — we have custom */
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRELOADER
+═══════════════════════════════════════════════════════════════ */
+#preloader {
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    padding: 0 20px;
+    box-sizing: border-box;
+    overflow: hidden;
+    transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s;
+}
+
+#preloader.out {
+    transform: scale(1.06);
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* "Mercer's" — small label above the main title */
+.pre-word {
+    font-family: var(--serif);
+    font-size: clamp(14px, 3.5vw, 36px);
+    font-weight: 400;
+    color: var(--gold);
+    line-height: 1;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    letter-spacing: 0.12em;
+    white-space: nowrap;
+    text-align: center;
+    width: 100%;
+}
+
+.pre-word span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(28px);
+    /* Transition applied by JS per-letter */
+}
+
+/* "Precision Painting" — dominant main title */
+.pre-sub {
+    font-family: var(--sans);
+    font-size: clamp(20px, 7vw, 100px);
+    font-weight: 300;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.85);
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+    width: 100%;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.pre-sub span {
+    display: inline-block;
+    opacity: 0;
+    transform: translateY(18px);
+    /* Transition applied by JS per-letter */
+}
+
+.pre-bar {
+    width: min(70vw, 500px);
+    height: 1px;
+    background: rgba(255,255,255,0.1);
+    margin-top: 4px;
+    overflow: hidden;
+}
+
+.pre-bar-fill {
+    height: 100%;
+    width: 0;
+    background: var(--gold);
+    animation: barFill 0.9s 0.4s var(--ease) forwards;
+}
+
+@keyframes barFill { to { width: 100%; } }
+
+/* ═══════════════════════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════════════════════ */
+#c-dot, #c-ring {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    top: 0; left: 0;
+    will-change: transform;
+}
+
+#c-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--gold);
+    transform: translate(-50%, -50%);
+    transition: width 0.2s, height 0.2s, background 0.2s;
+}
+
+#c-ring {
+    width: 36px;
+    height: 36px;
+    border: 1.5px solid rgba(196,168,130,0.65);
+    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--spring), height 0.3s var(--spring),
+                border-color 0.3s, background 0.3s;
+}
+
+body.cursor-hover #c-dot {
+    width: 0; height: 0;
+}
+
+body.cursor-hover #c-ring {
+    width: 52px; height: 52px;
+    border-color: var(--gold);
+    background: rgba(196,168,130,0.08);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   GRAIN OVERLAY
+═══════════════════════════════════════════════════════════════ */
+.grain {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    z-index: 9996;
+    opacity: 0.04;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='250' height='250'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='250' height='250' filter='url(%23n)'/%3E%3C/svg%3E");
+    background-size: 160px 160px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAVIGATION
+═══════════════════════════════════════════════════════════════ */
+nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 200;
+    padding: 28px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background var(--t) var(--ease),
+                padding var(--t) var(--ease),
+                box-shadow var(--t);
+}
+
+nav.scrolled {
+    background: rgba(10,10,10,0.97);
+    backdrop-filter: blur(16px);
+    padding: 17px 64px;
+    box-shadow: 0 1px 0 rgba(196,168,130,0.12);
+}
+
+.nav-logo {
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.nav-logo-main {
+    font-family: var(--serif);
+    font-size: 15px;
+    font-weight: 600;
+    color: #fff;
+    letter-spacing: 0.02em;
+    line-height: 1;
+}
+
+.nav-logo-sub {
+    font-size: 22px;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 38px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    transition: color 0.25s;
+}
+
+.nav-links a:hover { color: var(--gold); }
+
+.nav-cta {
+    background: var(--gold) !important;
+    color: var(--black) !important;
+    border: 2px solid var(--gold) !important;
+    padding: 12px 32px;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.08em;
+    transition: background var(--t), color var(--t), transform var(--t) !important;
+}
+
+.nav-cta:hover {
+    background: transparent !important;
+    color: var(--gold) !important;
+    transform: translateY(-1px);
+}
+
+.hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    cursor: none;
+    background: none;
+    border: none;
+    padding: 6px;
+}
+
+.hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: #fff;
+    transition: var(--t) var(--ease);
+}
+
+/* ── MOBILE NAV ─────────────────────────────────────── */
+.mob-nav {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 300;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 36px;
+}
+
+.mob-nav.open { display: flex; }
+
+.mob-nav a {
+    font-family: var(--serif);
+    font-size: 42px;
+    font-weight: 400;
+    color: #fff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.mob-nav a:hover { color: var(--gold); }
+
+.mob-close {
+    position: absolute;
+    top: 28px; right: 28px;
+    background: none;
+    border: none;
+    color: rgba(255,255,255,0.5);
+    font-size: 28px;
+    cursor: none;
+    padding: 8px;
+    line-height: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   HERO — BOOK PAGE TURN
+═══════════════════════════════════════════════════════════════ */
+.hero {
+    position: relative;
+    height: 100vh;
+    min-height: 700px;
+    overflow: hidden;
+    background: var(--black);
+}
+
+/* Each slide is a full-screen layer */
+.book-page {
+    position: absolute;
+    inset: 0;
+}
+
+/* Page images */
+.book-page .pg-img {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+}
+
+/* Global overlay on all pages for text legibility */
+.pg-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.88) 0%,
+        rgba(0,0,0,0.35) 45%,
+        rgba(0,0,0,0.15) 100%
+    );
+    z-index: 1;
+}
+
+/* Per-page project label — opacity driven entirely by JS showLabel/hideLabel */
+.pg-label {
+    position: absolute;
+    bottom: 110px;
+    right: 64px;
+    z-index: 3;
+    text-align: right;
+    opacity: 0;
+}
+
+.pg-label-tag {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+}
+
+.pg-label-name {
+    font-family: var(--serif);
+    font-size: clamp(22px, 2.8vw, 34px);
+    font-weight: 400;
+    color: rgba(255,255,255,0.95);
+}
+
+/* Hero foreground content (static, above all pages) */
+.hero-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 64px 72px;
+    z-index: 50;
+    pointer-events: none; /* allow clicks through to book */
+}
+
+.hero-eyebrow {
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 22px;
+    opacity: 0;
+    animation: fadeUp 0.7s 2.4s var(--spring) forwards;
+}
+
+.hero-h1 {
+    font-family: var(--serif);
+    font-size: clamp(54px, 7.8vw, 108px);
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.03;
+    letter-spacing: -0.01em;
+    margin-bottom: 26px;
+    opacity: 0;
+    animation: fadeUp 0.85s 2.6s var(--spring) forwards;
+}
+
+.hero-h1 em {
+    font-style: italic;
+    color: var(--gold-l);
+}
+
+.hero-sub {
+    font-size: 22px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.9);
+    line-height: 1.7;
+    max-width: 560px;
+    margin-bottom: 44px;
+    opacity: 0;
+    animation: fadeUp 0.7s 2.85s var(--spring) forwards;
+}
+
+.hero-actions {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    pointer-events: all;
+    opacity: 0;
+    animation: fadeUp 0.7s 3.05s var(--spring) forwards;
+}
+
+/* Page navigation UI (right side) */
+.page-nav {
+    position: absolute;
+    right: 64px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    animation: fadeIn 0.5s 3.5s forwards;
+}
+
+.page-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: none;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.page-dot.active {
+    background: var(--gold);
+    transform: scale(1.4);
+}
+
+.page-counter {
+    position: absolute;
+    right: 64px;
+    bottom: 72px;
+    z-index: 50;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.7);
+    opacity: 0;
+    animation: fadeIn 0.5s 3.5s forwards;
+}
+
+/* Scroll hint */
+.hero-scroll {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    animation: fadeIn 0.8s 3.8s forwards;
+}
+
+.hero-scroll span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+}
+
+.scroll-mouse {
+    width: 22px;
+    height: 34px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+}
+
+.scroll-mouse::after {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 3px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 2px;
+    animation: scrollDot 2s 4s infinite;
+}
+
+@keyframes scrollDot {
+    0%, 100% { top: 6px; opacity: 1; }
+    80% { top: 18px; opacity: 0; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   BUTTONS
+═══════════════════════════════════════════════════════════════ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    position: relative;
+    cursor: none;
+    transition: transform 0.25s var(--ease);
+}
+
+.btn-fill {
+    background: var(--gold);
+    color: var(--black);
+    padding: 17px 38px;
+    transition: background var(--t);
+}
+
+.btn-fill:hover { background: var(--gold-l); }
+
+.btn-ghost {
+    color: rgba(255,255,255,0.75);
+    padding-bottom: 3px;
+}
+
+.btn-ghost::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%;
+    height: 1px;
+    background: rgba(255,255,255,0.3);
+    transition: background 0.3s, width 0.3s;
+    transform-origin: left;
+}
+
+.btn-ghost:hover { color: #fff; }
+.btn-ghost:hover::after { background: #fff; }
+
+/* ═══════════════════════════════════════════════════════════════
+   CREDENTIALS STRIP
+═══════════════════════════════════════════════════════════════ */
+.strip {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 10;
+    background: rgba(18,18,18,0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    padding: 14px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.strip-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.9);
+    white-space: nowrap;
+}
+
+.strip-item .dot {
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: var(--gold);
+    flex-shrink: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SECTION SHARED STYLES
+═══════════════════════════════════════════════════════════════ */
+.s-label {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+}
+
+.s-title {
+    font-family: var(--serif);
+    font-size: clamp(34px, 4vw, 56px);
+    font-weight: 400;
+    line-height: 1.14;
+    color: var(--charcoal);
+    margin-bottom: 26px;
+    overflow: hidden; /* for line-clip reveal */
+}
+
+.s-title em { font-style: italic; }
+.s-title.light { color: #fff; }
+
+/* Line-by-line heading reveal */
+.line-wrap {
+    display: block;
+    overflow: hidden;
+    line-height: 1.2;
+    padding-bottom: 2px;
+}
+
+.line-inner {
+    display: block;
+    transform: translateY(105%);
+    transition: transform 0.9s var(--spring);
+}
+
+.s-title.vis .line-inner { transform: none; }
+
+.s-title.vis .line-wrap:nth-child(2) .line-inner { transition-delay: 0.08s; }
+.s-title.vis .line-wrap:nth-child(3) .line-inner { transition-delay: 0.16s; }
+
+.s-body {
+    font-size: 17px;
+    font-weight: 300;
+    line-height: 1.85;
+    color: #484848;
+}
+
+.s-body p + p { margin-top: 16px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   ABOUT
+═══════════════════════════════════════════════════════════════ */
+#about {
+    padding: 130px 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 110px;
+    align-items: center;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.about-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+    margin-top: 52px;
+}
+
+.stat {
+    border-top: 1px solid var(--gray-light);
+    padding-top: 18px;
+}
+
+.stat-n {
+    font-family: var(--serif);
+    font-size: 46px;
+    font-weight: 400;
+    color: var(--charcoal);
+    line-height: 1;
+}
+
+.stat-l {
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #666;
+    margin-top: 8px;
+}
+
+.about-img-wrap {
+    position: relative;
+}
+
+/* Replace the gradient divs below with <img> tags when you have real photos */
+.about-img-main {
+    width: 100%;
+    aspect-ratio: 3/4;
+    display: block;
+    background-image: url('https://images.unsplash.com/photo-1600566753376-12c8ab7fb75b?auto=format&fit=crop&w=900&h=1200');
+    background-size: cover;
+    background-position: center;
+}
+
+.about-img-accent {
+    position: absolute;
+    bottom: -36px;
+    left: -36px;
+    width: 52%;
+    aspect-ratio: 1;
+    background-image: url('https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=600&h=600');
+    background-size: cover;
+    background-position: center;
+    border: 6px solid var(--off-white);
+    z-index: 1;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════════════════════════ */
+#services {
+    background: var(--charcoal);
+    padding: 130px 64px;
+}
+
+.svc-head {
+    max-width: 1440px;
+    margin: 0 auto 80px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 48px;
+}
+
+.svc-head-right {
+    max-width: 400px;
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255,255,255,0.68);
+    flex-shrink: 0;
+}
+
+.svc-grid {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+}
+
+.svc-card {
+    background: rgba(255,255,255,0.04);
+    padding: 56px 46px 52px;
+    position: relative;
+    overflow: hidden;
+    transition: background var(--t) var(--ease);
+}
+
+/* Animated gold top-bar reveal */
+.svc-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 2px;
+    background: var(--gold);
+    transition: width 0.55s var(--ease);
+}
+
+.svc-card:hover { background: rgba(255,255,255,0.07); }
+.svc-card:hover::before { width: 100%; }
+
+/* Animated shine sweep */
+.svc-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(105deg,
+        transparent 40%,
+        rgba(196,168,130,0.05) 50%,
+        transparent 60%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s var(--ease);
+}
+
+.svc-card:hover::after { transform: translateX(100%); }
+
+.svc-num {
+    font-family: var(--serif);
+    font-size: 72px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.05);
+    line-height: 1;
+    margin-bottom: 26px;
+}
+
+.svc-title {
+    font-family: var(--serif);
+    font-size: 27px;
+    font-weight: 400;
+    color: #fff;
+    margin-bottom: 14px;
+    line-height: 1.2;
+}
+
+.svc-desc {
+    font-size: 15px;
+    font-weight: 300;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    margin-bottom: 30px;
+}
+
+.svc-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+}
+
+.svc-list li {
+    font-size: 14px;
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: rgba(255,255,255,0.5);
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    opacity: 1;
+    transform: translateX(0);
+    transition: color 0.3s, transform 0.35s ease, opacity 0.35s ease;
+}
+
+/* Stagger each item in on hover */
+.svc-card:hover .svc-list li {
+    transform: translateX(6px);
+}
+.svc-card:hover .svc-list li:nth-child(1) { transition-delay: 0s; }
+.svc-card:hover .svc-list li:nth-child(2) { transition-delay: 0.04s; }
+.svc-card:hover .svc-list li:nth-child(3) { transition-delay: 0.08s; }
+.svc-card:hover .svc-list li:nth-child(4) { transition-delay: 0.12s; }
+.svc-card:hover .svc-list li:nth-child(5) { transition-delay: 0.16s; }
+.svc-card:hover .svc-list li:nth-child(6) { transition-delay: 0.20s; }
+
+.svc-list li::before {
+    content: '';
+    width: 16px;
+    height: 1px;
+    background: var(--gold);
+    flex-shrink: 0;
+    transition: width 0.3s;
+}
+
+.svc-card:hover .svc-list li::before { width: 24px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   PROJECTS — HORIZONTAL PINNED SCROLL
+═══════════════════════════════════════════════════════════════ */
+.projects-pin {
+    position: relative;
+    /* Height determined by JS based on card count */
+}
+
+.projects-sticky {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.projects-head {
+    padding: 0 64px;
+    margin-bottom: 48px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-shrink: 0;
+}
+
+.proj-section-wrap {
+    padding: 0 64px 80px;
+}
+
+.proj-category {
+    margin-bottom: 64px;
+}
+
+.proj-grid {
+    display: flex;
+    gap: 3px;
+}
+
+.proj-grid--6 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3px;
+}
+
+.proj-card {
+    position: relative;
+    flex: 1;
+    height: 280px;
+    overflow: hidden;
+    cursor: none;
+}
+
+.proj-bg {
+    position: absolute;
+    inset: -1%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.8s var(--ease);
+}
+
+.proj-card:hover .proj-bg {
+    transform: scale(1.015);
+}
+
+.proj-info {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    padding: 28px 30px;
+    background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, transparent 100%);
+    transform: translateY(6px);
+    transition: transform 0.4s var(--spring);
+}
+
+.proj-card:hover .proj-info {
+    transform: translateY(0);
+}
+
+.proj-tag {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 8px;
+    display: inline-block;
+    background: rgba(0,0,0,0.45);
+    border: 1px solid rgba(184,145,68,0.5);
+    padding: 4px 10px;
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+}
+
+.proj-name {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 400;
+    color: #fff;
+    line-height: 1.25;
+}
+
+/* Progress bar — unused, kept for reference */
+.proj-progress {
+    display: none;
+}
+
+.proj-progress-fill {
+    display: none;
+    width: 0%;
+    background: var(--gold);
+    transition: width 0.05s;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PROCESS
+═══════════════════════════════════════════════════════════════ */
+#process {
+    background: var(--cream);
+    padding: 130px 64px;
+}
+
+.process-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.process-head {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: end;
+    margin-bottom: 80px;
+}
+
+.process-steps {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.step {
+    padding: 48px 40px 44px 32px;
+    border-left: 1px solid var(--gray-light);
+    position: relative;
+    overflow: hidden;
+    transition: background 0.4s;
+}
+
+.step:first-child { border-left: none; padding-left: 0; }
+
+.step:hover { background: rgba(196,168,130,0.06); }
+
+.step-n {
+    font-family: var(--serif);
+    font-size: 84px;
+    font-weight: 400;
+    color: var(--gray-light);
+    line-height: 1;
+    margin-bottom: 16px;
+    transition: color 0.4s;
+}
+
+.step:hover .step-n { color: var(--gold); }
+
+.step-title {
+    font-family: var(--serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--charcoal);
+    margin-bottom: 12px;
+}
+
+.step-desc {
+    font-size: 16px;
+    font-weight: 300;
+    line-height: 1.75;
+    color: #525252;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════════════════════════ */
+#testimonials {
+    padding: 130px 64px;
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.test-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 36px;
+    margin-top: 80px;
+}
+
+.test-card {
+    background: var(--cream);
+    padding: 48px 42px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s var(--spring), box-shadow 0.4s;
+}
+
+.test-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 16px 48px rgba(0,0,0,0.1);
+}
+
+.test-card::before {
+    content: '\201C';
+    font-family: var(--serif);
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.2;
+    position: absolute;
+    top: 8px; left: 28px;
+    line-height: 1;
+    transition: opacity 0.3s;
+}
+
+.test-card:hover::before { opacity: 0.35; }
+
+.stars {
+    color: var(--gold);
+    font-size: 15px;
+    letter-spacing: 3px;
+    margin-bottom: 16px;
+}
+
+.test-text {
+    flex: 1;
+    font-family: var(--serif);
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.75;
+    color: var(--charcoal);
+    margin-bottom: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.test-author {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    flex-direction: row;
+    margin-top: auto;
+    padding-top: 24px;
+}
+
+.test-avatar {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.author-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--charcoal);
+}
+
+.author-sep {
+    color: var(--gold);
+    font-size: 14px;
+}
+
+.author-loc {
+    font-size: 14px;
+    font-weight: 400;
+    color: #666;
+    margin-top: 2px;
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════════════════════════ */
+#contact {
+    background: var(--black);
+    padding: 130px 64px;
+}
+
+.contact-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 110px;
+    align-items: start;
+}
+
+.ci { display: flex; gap: 16px; align-items: flex-start; }
+
+.ci-icon {
+    width: 24px;
+    height: 24px;
+    color: var(--gold);
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.ci-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: 6px;
+}
+
+.ci-value {
+    font-size: 20px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.92);
+    line-height: 1.55;
+}
+
+.ci-value a {
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.ci-value a:hover { color: var(--gold); }
+
+.contact-details {
+    margin-top: 52px;
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.fg {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.fg label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+}
+
+.fg input, .fg select, .fg textarea {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.14);
+    color: #fff;
+    padding: 16px 20px;
+    font-family: var(--sans);
+    font-size: 16px;
+    font-weight: 300;
+    outline: none;
+    transition: border-color 0.3s, background 0.3s;
+    appearance: none;
+    cursor: none;
+}
+
+.fg input:focus, .fg select:focus, .fg textarea:focus {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.09);
+}
+
+.fg input::placeholder, .fg textarea::placeholder {
+    color: rgba(255,255,255,0.35);
+}
+
+.fg textarea { min-height: 128px; resize: vertical; }
+.fg select option { background: var(--black); }
+
+.btn-submit {
+    margin-top: 8px;
+    background: var(--gold);
+    color: var(--black);
+    border: none;
+    padding: 20px 48px;
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    align-self: flex-start;
+    transition: background var(--t);
+    cursor: none;
+}
+
+.btn-submit:hover { background: var(--gold-l); }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════════════════════ */
+footer {
+    background: var(--black);
+    border-top: 1px solid rgba(255,255,255,0.055);
+    padding: 34px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-logo {
+    font-family: var(--serif);
+    font-size: 18px;
+    color: rgba(255,255,255,0.55);
+}
+
+.footer-copy {
+    font-size: 13px;
+    color: rgba(255,255,255,0.45);
+}
+
+.footer-links {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+}
+
+.footer-links a {
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer-links a:hover { color: var(--gold); }
+
+/* ═══════════════════════════════════════════════════════════════
+   SCROLL REVEAL SYSTEM
+═══════════════════════════════════════════════════════════════ */
+.reveal {
+    opacity: 0;
+    transform: translateY(32px);
+    transition: opacity 0.8s var(--spring), transform 0.8s var(--spring);
+}
+
+.reveal.vis {
+    opacity: 1;
+    transform: none;
+}
+
+.d1 { transition-delay: 0.1s; }
+.d2 { transition-delay: 0.2s; }
+.d3 { transition-delay: 0.3s; }
+.d4 { transition-delay: 0.4s; }
+.d5 { transition-delay: 0.5s; }
+
+/* ═══════════════════════════════════════════════════════════════
+   KEYFRAMES
+═══════════════════════════════════════════════════════════════ */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: none; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   IMAGE PLACEHOLDER SYSTEM
+   ─────────────────────────────────────────────────────────────
+   Each gradient block has a visible reference badge.
+   When you have the real photo:
+     1. Find the HTML comment with the matching reference code
+     2. Replace the gradient in style="background:..." with:
+        style="background-image:url('your-file.jpg');background-size:cover;"
+     3. Delete the <div class="ph-badge ..."> block inside
+   ─────────────────────────────────────────────────────────────
+   IMAGE SLOTS ON THIS PAGE:
+     HERO-01  Hero background — page 1 of 5 (Lennox Beachside Residence)
+     HERO-02  Hero background — page 2 of 5 (Heritage Weatherboard, Ballina)
+     HERO-03  Hero background — page 3 of 5 (Byron Bay Boutique Hotel)
+     HERO-04  Hero background — page 4 of 5 (Ballina Industrial Facility)
+     HERO-05  Hero background — page 5 of 5 (Lennox Head New Build)
+     ABOUT-MAIN    About section — tall portrait image (3:4 ratio)
+     ABOUT-ACCENT  About section — small square accent image (1:1 ratio)
+     PROJECT-01    Projects gallery — card 1 (Lennox Beachside Residence)
+     PROJECT-02    Projects gallery — card 2 (Heritage Weatherboard, Ballina)
+     PROJECT-03    Projects gallery — card 3 (Byron Bay Boutique Hotel)
+     PROJECT-04    Projects gallery — card 4 (Ballina Industrial Facility)
+     PROJECT-05    Projects gallery — card 5 (Lennox Head New Build)
+     AVATAR-01     Testimonial avatar — Sarah & Tom R., Lennox Head
+     AVATAR-02     Testimonial avatar — James K., Ballina
+     AVATAR-03     Testimonial avatar — Mia T., Byron Bay
+═══════════════════════════════════════════════════════════════ */
+
+/* Badge that floats over every gradient placeholder */
+.ph-badge {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+    pointer-events: none;
+    user-select: none;
+    width: max-content;
+    max-width: 220px;
+}
+
+/* Hero: push badge to upper portion so it clears the headline text at bottom */
+.ph-badge.ph-hero { top: 22%; }
+
+/* Project cards & about main: vertically centred */
+.ph-badge.ph-center { top: 50%; transform: translate(-50%, -50%); }
+
+/* Small variant for compact slots (accent image, avatars) */
+.ph-badge.ph-sm { max-width: 155px; }
+
+/* Camera icon */
+.ph-icon {
+    width: 38px;
+    height: 38px;
+    color: rgba(255,255,255,0.5);
+    flex-shrink: 0;
+    margin-bottom: 2px;
+}
+
+.ph-badge.ph-sm .ph-icon { width: 26px; height: 26px; }
+
+/* Reference code pill */
+.ph-ref {
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 12.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #fff;
+    background: rgba(10,10,10,0.6);
+    border: 1.5px solid rgba(196,168,130,0.85);
+    padding: 7px 18px;
+    white-space: nowrap;
+}
+
+.ph-badge.ph-sm .ph-ref { font-size: 11px; padding: 5px 12px; }
+
+/* Description of what the image should show */
+.ph-desc {
+    font-size: 12px;
+    font-weight: 400;
+    color: rgba(255,255,255,0.65);
+    line-height: 1.55;
+}
+
+.ph-badge.ph-sm .ph-desc { font-size: 10.5px; }
+
+/* About-accent is a gold/warm gradient — use dark text for badge */
+.ph-badge.ph-on-light .ph-icon   { color: rgba(10,10,10,0.35); }
+.ph-badge.ph-on-light .ph-ref    { color: var(--black); background: rgba(255,255,255,0.7); border-color: rgba(10,10,10,0.35); }
+.ph-badge.ph-on-light .ph-desc   { color: rgba(10,10,10,0.55); }
+
+/* Avatar reference label shown below the circle */
+.ph-avatar-ref {
+    display: block;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    color: var(--gray-mid);
+    text-align: center;
+    margin-top: 5px;
+    user-select: none;
+}
+
+/* Need relative positioning on about-img-main for absolute badge inside */
+.about-img-main { position: relative; }
+
+/* ═══════════════════════════════════════════════════════════════
+   FOCUS & ACCESSIBILITY
+═══════════════════════════════════════════════════════════════ */
+/* Visible focus ring for keyboard users */
+:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 4px;
+}
+
+/* Ensure links have underline on focus for clarity */
+a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+    text-decoration: underline;
+}
+
+/* High-contrast focus on dark backgrounds */
+#contact :focus-visible,
+#services :focus-visible,
+nav :focus-visible {
+    outline-color: var(--gold-l);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════════════════════ */
+@media (max-width: 1100px) {
+    nav, nav.scrolled { padding-left: 40px; padding-right: 40px; }
+    .hero-content, .pg-label { padding-left: 40px; }
+    .page-nav, .page-counter { right: 40px; }
+    .strip { padding: 12px 40px; gap: 24px; }
+    #about { padding: 90px 40px; gap: 60px; }
+    #services { padding: 90px 40px; }
+    .svc-head { padding: 0; }
+    .proj-section-wrap { padding-left: 40px; padding-right: 40px; }
+    #process { padding: 90px 40px; }
+    #testimonials { padding: 90px 40px; }
+    #contact { padding: 90px 40px; }
+    footer { padding: 30px 40px; }
+}
+
+@media (max-width: 900px) {
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    #about { grid-template-columns: 1fr; }
+    .about-img-wrap { order: -1; }
+    .about-img-accent { display: none; }
+    .svc-head { flex-direction: column; align-items: flex-start; }
+    .svc-grid { grid-template-columns: 1fr 1fr; }
+    .proj-section-wrap { padding-left: 24px; padding-right: 24px; }
+    .proj-card { height: 200px; }
+    .proj-grid--6 { grid-template-columns: 1fr 1fr 1fr; }
+    .process-head { grid-template-columns: 1fr; gap: 40px; }
+    .process-steps { grid-template-columns: 1fr 1fr; }
+    .step { border-left: none; border-top: 1px solid var(--gray-light); padding-left: 0; }
+    .step:first-child { border-top: none; }
+    .test-grid { grid-template-columns: 1fr; }
+    .contact-inner { grid-template-columns: 1fr; gap: 60px; }
+    footer { flex-direction: column; text-align: center; }
+    .hero-sub { font-size: 19px; }
+    .strip-item { font-size: 12px; }
+    .strip { gap: 20px; }
+}
+
+@media (max-width: 600px) {
+    /* Nav */
+    nav, nav.scrolled { padding-left: 16px; padding-right: 16px; }
+    .nav-logo-sub { font-size: 15px; letter-spacing: 0.1em; }
+    .nav-logo-main { font-size: 10px; }
+
+    /* Hero */
+    .hero-content { padding: 0 20px 150px; }
+    .hero-eyebrow { font-size: 12px; letter-spacing: 0.16em; }
+    .hero-h1 { font-size: clamp(32px, 9vw, 54px); }
+    .hero-sub { font-size: 15px; max-width: 100%; line-height: 1.7; }
+    .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .hero-actions .btn { font-size: 13px; padding: 14px 24px; }
+    .hero-scroll { display: none; }
+    .pg-label { left: 20px; right: auto; bottom: 130px; text-align: left; }
+    .pg-label-name { font-size: 18px; }
+    .pg-label-tag { font-size: 10px; }
+    .page-nav { display: none; }
+    .page-counter { right: 20px; font-size: 11px; }
+
+    /* Credentials strip */
+    .strip { padding: 10px 16px; gap: 10px 20px; justify-content: center; flex-wrap: wrap; }
+    .strip-item { font-size: 10px; letter-spacing: 0.06em; }
+
+    /* About */
+    #about, #services, #process, #testimonials, #contact { padding: 60px 20px; }
+    .s-label { font-size: 15px; }
+
+    /* Services */
+    .svc-grid { grid-template-columns: 1fr; }
+    .svc-card { padding: 32px 20px; }
+    .svc-num { font-size: 56px; }
+    .svc-title { font-size: 22px; }
+
+    /* Projects */
+    .proj-section-wrap { padding-left: 16px; padding-right: 16px; }
+    .proj-grid { flex-direction: column; }
+    .proj-card { flex: none; width: 100%; height: 56vw; }
+    .proj-grid--6 { grid-template-columns: 1fr 1fr; }
+    .proj-tag { font-size: 9px; padding: 3px 7px; letter-spacing: 0.1em; }
+    .proj-name { font-size: 16px; }
+    .proj-info { padding: 16px 18px; }
+
+    /* Process */
+    .process-steps { grid-template-columns: 1fr; }
+    .step-title { font-size: 22px; }
+
+    /* Testimonials */
+    .test-card { padding: 28px 24px; }
+
+    /* Contact */
+    .form-row { grid-template-columns: 1fr; }
+
+    /* Footer */
+    footer { padding-left: 20px; padding-right: 20px; font-size: 13px; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+    </style>
+</head>
+<body>
+
+<!-- Reusable SVG icons (hidden) -->
+<svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="ico-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6.827 6.175A2.31 2.31 0 015.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 002.25 2.25h15A2.25 2.25 0 0021.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 00-1.134-.175 2.31 2.31 0 01-1.64-1.055l-.822-1.316a2.192 2.192 0 00-1.736-1.039 48.774 48.774 0 00-5.232 0 2.192 2.192 0 00-1.736 1.039l-.821 1.316z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M16.5 12.75a4.5 4.5 0 11-9 0 4.5 4.5 0 019 0zM18.75 10.5h.008v.008h-.008V10.5z" />
+    </symbol>
+</svg>
+
+<!-- Grain texture overlay -->
+<div class="grain" aria-hidden="true"></div>
+
+<!-- ── PRELOADER ─────────────────────────────────────────────── -->
+<div id="preloader" aria-hidden="true">
+    <div class="pre-word" id="preWord"><span>M</span><span>e</span><span>r</span><span>c</span><span>e</span><span>r</span><span>'</span><span>s</span></div>
+    <div class="pre-sub" id="preSub"><span>P</span><span>r</span><span>e</span><span>c</span><span>i</span><span>s</span><span>i</span><span>o</span><span>n</span><span>&nbsp;</span><span>P</span><span>a</span><span>i</span><span>n</span><span>t</span><span>i</span><span>n</span><span>g</span></div>
+    <div class="pre-bar"><div class="pre-bar-fill"></div></div>
+</div>
+
+<!-- ── CUSTOM CURSOR ─────────────────────────────────────────── -->
+<div id="c-dot" aria-hidden="true"></div>
+<div id="c-ring" aria-hidden="true"></div>
+
+<!-- ── MOBILE NAV ────────────────────────────────────────────── -->
+<div class="mob-nav" id="mobNav" role="dialog" aria-modal="true" aria-label="Navigation">
+    <button class="mob-close" id="mobClose" aria-label="Close">&#x2715;</button>
+    <a href="#about"       onclick="closeMob()">About</a>
+    <a href="#services"    onclick="closeMob()">Services</a>
+    <a href="#projects"    onclick="closeMob()">Our Work</a>
+    <a href="#process"     onclick="closeMob()">Process</a>
+    <a href="#contact"     onclick="closeMob()">Contact</a>
+</div>
+
+<!-- ── NAVIGATION ────────────────────────────────────────────── -->
+<nav id="nav">
+    <a href="#" class="nav-logo" aria-label="Mercer's Precision Painting — home">
+        <span class="nav-logo-main">Mercer's</span>
+        <span class="nav-logo-sub">Precision Painting</span>
+    </a>
+    <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#projects">Our Work</a></li>
+        <li><a href="#process">Process</a></li>
+        <li><a href="#contact" class="nav-cta">Get a Quote</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- ══════════════════════════════════════════════════════════════
+     HERO — BOOK PAGE TURN
+═══════════════════════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-label="Hero">
+
+    <!-- ── PAGE 1 ── ════════════════════════════════════════════════
+         IMAGE SLOT: HERO-01
+         Content : Residential interior — Lennox Beachside Residence
+         Format  : Landscape, min 1920×1080px (fills full screen)
+         To swap : Change the gradient in style="background:..." below to
+                   style="background-image:url('your-file.jpg');background-size:cover;"
+                   then delete the <div class="ph-badge ..."> block.
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="book-page active" id="page0">
+        <div class="pg-img" style="background-image:url('crew.webp'); background-size:cover; background-position:center;"></div>
+        <div class="pg-overlay"></div>
+        <div class="pg-label">
+            <div class="pg-label-tag">Meet the Team</div>
+            <div class="pg-label-name">Mercer's Precision Painting Crew</div>
+        </div>
+    </div>
+
+    <!-- ── PAGE 2 ── ════════════════════════════════════════════════
+         IMAGE SLOT: HERO-02
+         Content : Residential exterior — Heritage Weatherboard, Ballina
+         Format  : Landscape, min 1920×1080px
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="book-page" id="page1">
+        <div class="pg-img" style="background-image:url('second-photo.jpeg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-overlay"></div>
+        <div class="pg-label">
+            <div class="pg-label-tag">Residential &middot; Exterior</div>
+            <div class="pg-label-name">Modern Byron Bay</div>
+        </div>
+    </div>
+
+    <!-- ── PAGE 3 ── ════════════════════════════════════════════════
+         IMAGE SLOT: HERO-03
+         Content : Commercial specialty finish — Byron Bay Boutique Hotel
+         Format  : Landscape, min 1920×1080px
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="book-page" id="page2">
+        <div class="pg-img" style="background-image:url('photo-4.jpeg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-overlay"></div>
+        <div class="pg-label">
+            <div class="pg-label-tag">Interior &middot; Specialty Finish</div>
+            <div class="pg-label-name">Luxury Bangalow Home</div>
+        </div>
+    </div>
+
+    <!-- ── PAGE 4 ── ════════════════════════════════════════════════
+         IMAGE SLOT: HERO-04
+         Content : Industrial epoxy floor/facility — Ballina
+         Format  : Landscape, min 1920×1080px
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="book-page" id="page3">
+        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=3840&h=2160&q=95'); background-size:cover; background-position:center;"></div>
+        <div class="pg-overlay"></div>
+        <div class="pg-label">
+            <div class="pg-label-tag">Residential &middot; Exterior</div>
+            <div class="pg-label-name">Lennox Beachside Residence</div>
+        </div>
+    </div>
+
+    <!-- ── PAGE 5 ── ════════════════════════════════════════════════
+         IMAGE SLOT: HERO-05
+         Content : Residential new build — Lennox Head
+         Format  : Landscape, min 1920×1080px
+    ═══════════════════════════════════════════════════════════════ -->
+    <div class="book-page" id="page4">
+        <div class="pg-img" style="background-image:url('hero5.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-overlay"></div>
+        <div class="pg-label">
+            <div class="pg-label-tag">Residential &middot; New Build</div>
+            <div class="pg-label-name">Lennox Head New Build</div>
+        </div>
+    </div>
+
+    <!-- Hero copy (always on top) -->
+    <div class="hero-content">
+        <p class="hero-eyebrow">Lennox Head, NSW &nbsp;&middot;&nbsp; Est. 2000</p>
+        <h1 class="hero-h1">
+            Where craft<br>meets <em>precision.</em>
+        </h1>
+        <p class="hero-sub">
+            Premium residential, commercial and industrial painting across Lennox Head, Ballina and the Northern Rivers.
+        </p>
+        <div class="hero-actions">
+            <a href="#contact" class="btn btn-fill magnetic">Request a Quote</a>
+            <a href="#projects" class="btn btn-ghost magnetic">View Our Work</a>
+        </div>
+    </div>
+
+    <!-- Page-turn nav dots -->
+    <div class="page-nav" id="pageNav" aria-label="Page navigation">
+        <button class="page-dot active" data-page="0" aria-label="Page 1"></button>
+        <button class="page-dot" data-page="1" aria-label="Page 2"></button>
+        <button class="page-dot" data-page="2" aria-label="Page 3"></button>
+        <button class="page-dot" data-page="3" aria-label="Page 4"></button>
+        <button class="page-dot" data-page="4" aria-label="Page 5"></button>
+    </div>
+
+    <!-- Page counter -->
+    <div class="page-counter" id="pageCounter">01 / 05</div>
+
+    <!-- Scroll indicator -->
+    <div class="hero-scroll" aria-hidden="true">
+        <div class="scroll-mouse"></div>
+        <span>Scroll</span>
+    </div>
+
+    <!-- ── CREDENTIALS STRIP ──────────────────────────────────────── -->
+    <div class="strip">
+        <div class="strip-item"><span class="dot"></span>Licensed &amp; Insured</div>
+        <div class="strip-item"><span class="dot"></span>NSW Fair Trading Registered</div>
+        <div class="strip-item"><span class="dot"></span>Master Painters Association</div>
+        <div class="strip-item"><span class="dot"></span>Domestic &middot; Commercial &middot; Industrial</div>
+        <div class="strip-item"><span class="dot"></span>Northern Rivers NSW</div>
+    </div>
+
+</section>
+
+
+<!-- ══════════════════════════════════════════════════════════════
+     ABOUT
+═══════════════════════════════════════════════════════════════ -->
+<section id="about" aria-labelledby="about-h">
+    <div>
+        <p class="s-label reveal">Our Story</p>
+        <h2 class="s-title" id="about-h">
+            <span class="line-wrap"><span class="line-inner">A standard set by</span></span>
+            <span class="line-wrap"><span class="line-inner"><em>the work itself.</em></span></span>
+        </h2>
+        <div class="s-body reveal d2">
+            <p>Stanton Mercer founded Mercer's Precision Painting in Lennox Head over fifteen years ago with a simple belief: that the quality of the work speaks louder than any advertisement. That belief still shapes everything we do.</p>
+            <p>From heritage coastal homes to large-scale commercial and industrial projects, our approach never changes — thorough preparation, premium materials, and a finished surface that earns its place in the space.</p>
+        </div>
+        <div class="about-stats">
+            <div class="stat reveal">
+                <div class="stat-n" data-count="25" data-suffix="+">0</div>
+                <div class="stat-l">Years in the Region</div>
+            </div>
+            <div class="stat reveal d1">
+                <div class="stat-n" data-count="1000" data-suffix="+">0</div>
+                <div class="stat-l">Projects Completed</div>
+            </div>
+            <div class="stat reveal d2">
+                <div class="stat-n" data-count="7">0</div>
+                <div class="stat-l">Sectors of Expertise</div>
+            </div>
+            <div class="stat reveal d3">
+                <div class="stat-n" data-count="100" data-suffix="%">0</div>
+                <div class="stat-l">Client Satisfaction</div>
+            </div>
+        </div>
+    </div>
+    <div class="about-img-wrap reveal d2">
+
+        <!-- ════════════════════════════════════════════════════════
+             IMAGE SLOT: ABOUT-MAIN
+             Content : Portrait of Stanton Mercer at work, OR a
+                       beautifully finished interior/exterior room
+             Format  : Portrait (3:4 ratio), min 900×1200px
+             To swap : Replace the background: gradient on .about-img-main
+                       with background-image:url('your-file.jpg')
+                       and set background-size:cover; background-position:center;
+                       Then delete the <div class="ph-badge..."> inside.
+        ═══════════════════════════════════════════════════════════ -->
+        <div class="about-img-main">
+        </div>
+
+        <!-- ════════════════════════════════════════════════════════
+             IMAGE SLOT: ABOUT-ACCENT
+             Content : Close-up detail shot — brush stroke, paint tin,
+                       timber trim, or a small exterior vignette
+             Format  : Square (1:1 ratio), min 600×600px
+             To swap : Replace the background: gradient on .about-img-accent
+                       with background-image:url('your-file.jpg')
+                       Then delete the <div class="ph-badge..."> inside.
+        ═══════════════════════════════════════════════════════════ -->
+        <div class="about-img-accent">
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     SERVICES
+═══════════════════════════════════════════════════════════════ -->
+<section id="services" aria-labelledby="services-h">
+    <div class="svc-head">
+        <div>
+            <p class="s-label reveal">What We Do</p>
+            <h2 class="s-title light" id="services-h">
+                <span class="line-wrap"><span class="line-inner">Every surface,</span></span>
+                <span class="line-wrap"><span class="line-inner">every finish.</span></span>
+            </h2>
+        </div>
+        <p class="svc-head-right reveal">
+            From a single feature wall to a full industrial facility — our scope covers every substrate and environment that calls for a considered hand.
+        </p>
+    </div>
+    <div class="svc-grid">
+
+        <div class="svc-card reveal">
+            <div class="svc-num">01</div>
+            <h3 class="svc-title">Residential</h3>
+            <p class="svc-desc">Precision interior and exterior work for homes across the Northern Rivers — new builds, renovations, and coastal heritage restorations.</p>
+            <ul class="svc-list">
+                <li>Interior walls, ceilings &amp; trims</li>
+                <li>Exterior &amp; coastal weatherboard</li>
+                <li>Cabinet &amp; joinery painting</li>
+                <li>Feature walls &amp; colour consulting</li>
+                <li>Deck, fence &amp; pergola staining</li>
+                <li>Texture &amp; decorative finishes</li>
+            </ul>
+        </div>
+
+        <div class="svc-card reveal d1">
+            <div class="svc-num">02</div>
+            <h3 class="svc-title">Commercial</h3>
+            <p class="svc-desc">Professional, minimal-disruption painting for offices, retail, hospitality and strata — delivered on schedule and to spec.</p>
+            <ul class="svc-list">
+                <li>Office &amp; retail fit-outs</li>
+                <li>Hospitality &amp; accommodation</li>
+                <li>Strata &amp; body corporate</li>
+                <li>Specialty &amp; feature finishes</li>
+                <li>Heritage colour &amp; restoration</li>
+                <li>Anti-graffiti systems</li>
+            </ul>
+        </div>
+
+        <div class="svc-card reveal d2">
+            <div class="svc-num">03</div>
+            <h3 class="svc-title">Industrial</h3>
+            <p class="svc-desc">Heavy-duty protective coatings for structures, plant and equipment — marine-grade systems engineered for the Northern Rivers climate.</p>
+            <ul class="svc-list">
+                <li>Epoxy floor coatings</li>
+                <li>Structural steel &amp; pipework</li>
+                <li>Rust treatment &amp; corrosion control</li>
+                <li>Marine-grade protective systems</li>
+                <li>Warehouses &amp; sheds</li>
+                <li>Line marking</li>
+            </ul>
+        </div>
+
+        <div class="svc-card reveal d3">
+            <div class="svc-num">04</div>
+            <h3 class="svc-title">Roof Restoration</h3>
+            <p class="svc-desc">Full roof restoration and protective coating services for residential and commercial roofs — extending lifespan and improving weather resistance.</p>
+            <ul class="svc-list">
+                <li>Roof cleaning &amp; preparation</li>
+                <li>Ridge capping repointing</li>
+                <li>Membrane &amp; protective coatings</li>
+                <li>Metal &amp; Colorbond roof painting</li>
+                <li>Tile roof restoration</li>
+                <li>Leak sealing &amp; waterproofing</li>
+            </ul>
+        </div>
+
+        <div class="svc-card reveal d4">
+            <div class="svc-num">05</div>
+            <h3 class="svc-title">Driveways</h3>
+            <p class="svc-desc">Durable driveway coatings and resurfacing for concrete and asphalt surfaces — UV-stable, slip-resistant, and built to last in the Northern Rivers climate.</p>
+            <ul class="svc-list">
+                <li>Concrete sealing &amp; coating</li>
+                <li>Epoxy driveway systems</li>
+                <li>Slip-resistant texture finishes</li>
+                <li>Crack repair &amp; resurfacing</li>
+                <li>Colour &amp; decorative finishes</li>
+                <li>UV-stable topcoat application</li>
+            </ul>
+        </div>
+
+        <div class="svc-card reveal d5">
+            <div class="svc-num">06</div>
+            <h3 class="svc-title">Timber Works</h3>
+            <p class="svc-desc">Specialist timber finishing and preservation for decks, cladding, fences and joinery — protecting the natural character of wood in coastal environments.</p>
+            <ul class="svc-list">
+                <li>Deck oiling &amp; staining</li>
+                <li>Timber cladding &amp; weatherboard</li>
+                <li>Fence &amp; pergola treatments</li>
+                <li>Interior timber &amp; joinery</li>
+                <li>Sanding &amp; surface preparation</li>
+                <li>Timber preservation systems</li>
+            </ul>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PROJECTS — HORIZONTAL PINNED SCROLL
+═══════════════════════════════════════════════════════════════ -->
+<section id="projects" aria-labelledby="projects-h">
+    <div class="proj-section-wrap">
+
+        <!-- ── RESIDENTIAL ───────────────────────────────────────── -->
+        <div class="proj-category">
+            <div class="projects-head">
+                <div>
+                    <h2 class="s-title" id="projects-h">
+                        <span class="line-wrap"><span class="line-inner">Our Residential <em style="color:var(--gold)">Work.</em></span></span>
+                    </h2>
+                </div>
+            </div>
+            <div class="proj-grid">
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('https://images.unsplash.com/photo-1600047509807-ba8f99d2cdde?auto=format&fit=crop&w=900&h=700'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Residential &middot; Exterior</p>
+                        <div class="proj-name">Lennox Beachside Residence</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('hinterland.jpeg'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Residential &middot; Interior</p>
+                        <div class="proj-name">Byron Hinterland Home</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('wategoes.jpeg'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Residential &middot; Exterior</p>
+                        <div class="proj-name">Wategos Beach New Build</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('fancy-inside.jpg'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Residential &middot; Interior</p>
+                        <div class="proj-name">Ballina Waterfront Villa</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ── COMMERCIAL ─────────────────────────────────────────── -->
+        <div class="proj-category">
+            <div class="projects-head">
+                <div>
+                    <p class="s-label reveal">&nbsp;</p>
+                    <h2 class="s-title">
+                        <span class="line-wrap"><span class="line-inner">Our Commercial <em style="color:var(--gold)">Work.</em></span></span>
+                    </h2>
+                </div>
+            </div>
+            <div class="proj-grid proj-grid--6">
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('shawsbay.jpeg'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Commercial &middot; Interior</p>
+                        <div class="proj-name">Shaws Bay Hotel, Ballina</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('bunnings.webp'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Commercial &middot; Exterior</p>
+                        <div class="proj-name">Bunnings Warehouse, Ballina</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('goodguys2.jpeg'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Commercial &middot; Exterior</p>
+                        <div class="proj-name">The Good Guys</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('tacobell.webp'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Commercial &middot; Exterior</p>
+                        <div class="proj-name">Taco Bell, Ballina</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('https://lh3.googleusercontent.com/gps-cs-s/APNQkAFoI10chTK5z6CHUBRQ3WwqsYcCN6usbShsE_x07IGFOCmHGQObtfAZl-sJyqFF4RbcqRldg_BgL-PfZY-8aA0u8vt4_-FqaQzSvo0WlTz7MzIhPE2T-ralz8fq_MDyuMylurA=w900-h600-k-no'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Commercial &middot; Exterior</p>
+                        <div class="proj-name">KFC, Ballina</div>
+                    </div>
+                </div>
+                <div class="proj-card">
+                    <div class="proj-bg" style="background-image:url('harveyn.webp'); background-size:cover; background-position:center;"></div>
+                    <div class="proj-info">
+                        <p class="proj-tag">Commercial &middot; Exterior</p>
+                        <div class="proj-name">Harvey Norman, Ballina</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     PROCESS
+═══════════════════════════════════════════════════════════════ -->
+<section id="process" aria-labelledby="process-h">
+    <div class="process-inner">
+        <div class="process-head">
+            <div>
+                <p class="s-label reveal">How We Work</p>
+                <h2 class="s-title" id="process-h">
+                    <span class="line-wrap"><span class="line-inner">A process built</span></span>
+                    <span class="line-wrap"><span class="line-inner">around <em>your project.</em></span></span>
+                </h2>
+            </div>
+            <p class="s-body reveal">
+                Good painting is 70% preparation. We don't cut corners in the lead-up — which is why our finishes last and our clients keep calling us back.
+            </p>
+        </div>
+        <div class="process-steps">
+            <div class="step reveal">
+                <div class="step-n">01</div>
+                <h3 class="step-title">Consultation</h3>
+                <p class="step-desc">We visit your property, assess the scope, and listen. No obligation, no pressure — just an honest conversation about your project.</p>
+            </div>
+            <div class="step reveal d1">
+                <div class="step-n">02</div>
+                <h3 class="step-title">Preparation</h3>
+                <p class="step-desc">Surface prep is everything. We sand, fill, prime, and repair — so the finish coat is applied to a perfect substrate.</p>
+            </div>
+            <div class="step reveal d2">
+                <div class="step-n">03</div>
+                <h3 class="step-title">Application</h3>
+                <p class="step-desc">Premium materials, applied with care. We protect your space, work methodically, and keep the site clean throughout.</p>
+            </div>
+            <div class="step reveal d3">
+                <div class="step-n">04</div>
+                <h3 class="step-title">Handover</h3>
+                <p class="step-desc">A final walkthrough together. We don't leave until you're satisfied — and our work is backed by a written warranty.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     TESTIMONIALS
+═══════════════════════════════════════════════════════════════ -->
+<section id="testimonials" aria-labelledby="test-h">
+    <p class="s-label reveal">What Clients Say</p>
+    <h2 class="s-title" id="test-h">
+        <span class="line-wrap"><span class="line-inner">The measure of</span></span>
+        <span class="line-wrap"><span class="line-inner">our <em>reputation.</em></span></span>
+    </h2>
+    <div class="test-grid">
+
+        <div class="test-card reveal">
+            <div class="stars">★★★★★</div>
+            <p class="test-text">"We recently engaged Mercers Precision Painting for a major repaint of our coastal home in Lennox Head NSW, and the results were beyond our expectations."</p>
+            <div class="test-author">
+                <div class="author-name">Bailey</div>
+                <div class="author-sep">&middot;</div>
+                <div class="author-loc">Lennox Head</div>
+            </div>
+        </div>
+
+        <div class="test-card reveal d1">
+            <div class="stars">★★★★★</div>
+            <p class="test-text">"If you're searching for truly professional painters in Lennox Head NSW, look no further than Mercers Precision Painting. We hired their team for a full interior and exterior house painting project, and the experience was outstanding."</p>
+            <div class="test-author">
+                <div class="author-name">Karen</div>
+                <div class="author-sep">&middot;</div>
+                <div class="author-loc">Lennox Head</div>
+            </div>
+        </div>
+
+        <div class="test-card reveal d2">
+            <div class="stars">★★★★★</div>
+            <p class="test-text">"Mercers Precision Painting is easily the best painting company we've ever worked with. Their entire approach reflects a commitment to quality and customer satisfaction that's rare these days."</p>
+            <div class="test-author">
+                <div class="author-name">Larry</div>
+                <div class="author-sep">&middot;</div>
+                <div class="author-loc">Northern Rivers</div>
+            </div>
+        </div>
+
+        <div class="test-card reveal">
+            <div class="stars">★★★★★</div>
+            <p class="test-text">"We recently had our entire home repainted by Mercers Precision Painting, and we honestly couldn't have asked for a better experience from start to finish."</p>
+            <div class="test-author">
+                <div class="author-name">David</div>
+                <div class="author-sep">&middot;</div>
+                <div class="author-loc">Northern Rivers</div>
+            </div>
+        </div>
+
+        <div class="test-card reveal d1">
+            <div class="stars">★★★★★</div>
+            <p class="test-text">"Five stars all the way! The painters from Mercers Precision Painting did an outstanding job on our home. They were neat, efficient, and went above and beyond to make sure everything looked perfect."</p>
+            <div class="test-author">
+                <div class="author-name">Claire</div>
+                <div class="author-sep">&middot;</div>
+                <div class="author-loc">Northern Rivers</div>
+            </div>
+        </div>
+
+        <div class="test-card reveal d2">
+            <div class="stars">★★★★★</div>
+            <p class="test-text">"So easy to deal with. They don't spill a drop and clean up along the way. Couldn't be happier with the results."</p>
+            <div class="test-author">
+                <div class="author-name">Debra White</div>
+                <div class="author-sep">&middot;</div>
+                <div class="author-loc">Northern Rivers</div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════════════
+     CONTACT
+═══════════════════════════════════════════════════════════════ -->
+<section id="contact" aria-labelledby="contact-h">
+    <div class="contact-inner">
+        <div>
+            <p class="s-label reveal">Get in Touch</p>
+            <h2 class="s-title light" id="contact-h">
+                <span class="line-wrap"><span class="line-inner">Let's talk about</span></span>
+                <span class="line-wrap"><span class="line-inner"><em>your project.</em></span></span>
+            </h2>
+            <p class="s-body reveal d2" style="color:rgba(255,255,255,0.72);">
+                We take on a limited number of projects at any one time so every client gets our full attention. If you're planning something, reach out early.
+            </p>
+            <div class="contact-details">
+                <div class="ci reveal d2">
+                    <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/>
+                    </svg>
+                    <div>
+                        <div class="ci-label">Phone</div>
+                        <div class="ci-value"><a href="tel:0427088838">0427 088 838</a></div>
+                    </div>
+                </div>
+                <div class="ci reveal d3">
+                    <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/>
+                    </svg>
+                    <div>
+                        <div class="ci-label">Email</div>
+                        <div class="ci-value"><a href="mailto:mercers.pp@gmail.com">mercers.pp@gmail.com</a></div>
+                    </div>
+                </div>
+                <div class="ci reveal d4">
+                    <svg class="ci-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/>
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/>
+                    </svg>
+                    <div>
+                        <div class="ci-label">Service Area</div>
+                        <div class="ci-value">Lennox Head &middot; Ballina &middot; Byron Bay<br>Northern Rivers NSW 2478</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <form class="contact-form reveal d1" id="quoteForm" novalidate>
+            <div class="form-row">
+                <div class="fg">
+                    <label for="f-fn">First Name</label>
+                    <input type="text" id="f-fn" name="fname" placeholder="Stanton" autocomplete="given-name" required>
+                </div>
+                <div class="fg">
+                    <label for="f-ln">Last Name</label>
+                    <input type="text" id="f-ln" name="lname" placeholder="Mercer" autocomplete="family-name" required>
+                </div>
+            </div>
+            <div class="fg">
+                <label for="f-em">Email</label>
+                <input type="email" id="f-em" name="email" placeholder="you@example.com" autocomplete="email" required>
+            </div>
+            <div class="fg">
+                <label for="f-ph">Phone</label>
+                <input type="tel" id="f-ph" name="phone" placeholder="0400 000 000" autocomplete="tel">
+            </div>
+            <div class="fg">
+                <label for="f-sv">Service Type</label>
+                <select id="f-sv" name="service">
+                    <option value="" disabled selected>Select a service</option>
+                    <option>Residential — Interior</option>
+                    <option>Residential — Exterior</option>
+                    <option>Commercial</option>
+                    <option>Industrial</option>
+                    <option>Specialty Finish</option>
+                    <option>Not sure — need advice</option>
+                </select>
+            </div>
+            <div class="fg">
+                <label for="f-ms">Tell us about your project</label>
+                <textarea id="f-ms" name="message" placeholder="Brief description of the space, what you're hoping to achieve, preferred timeline…"></textarea>
+            </div>
+            <button type="submit" class="btn-submit magnetic" id="submitBtn">Send Enquiry</button>
+        </form>
+    </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────────────────── -->
+<footer>
+    <div class="footer-logo">Mercer's Precision Painting</div>
+    <p class="footer-copy">&copy; 2025 Mercer's Precision Painting &mdash; Lennox Head NSW</p>
+    <ul class="footer-links">
+        <li><a href="https://www.facebook.com/mercersprecisionpainting/" target="_blank" rel="noopener">Facebook</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+    </ul>
+</footer>
+
+<!-- ══════════════════════════════════════════════════════════════
+     JAVASCRIPT
+═══════════════════════════════════════════════════════════════ -->
+<script>
+(function () {
+'use strict';
+
+// ── PRELOADER ────────────────────────────────────────────────────
+function initPreloader() {
+    const pre   = document.getElementById('preloader');
+    const wordChars = pre.querySelectorAll('#preWord span');
+    const subChars  = pre.querySelectorAll('#preSub span');
+
+    document.body.style.overflow = 'hidden';
+
+    // Animate each letter of "Mercer's"
+    wordChars.forEach((el, i) => {
+        setTimeout(() => {
+            el.style.opacity    = '1';
+            el.style.transform  = 'translateY(0)';
+            el.style.transition = `opacity 0.45s, transform 0.6s cubic-bezier(0.16,1,0.3,1)`;
+        }, 200 + i * 75);
+    });
+
+    // Animate each letter of "Precision Painting" after "Mercer's" finishes
+    const subStart = 200 + wordChars.length * 75 + 120;
+    subChars.forEach((el, i) => {
+        setTimeout(() => {
+            el.style.opacity    = '1';
+            el.style.transform  = 'translateY(0)';
+            el.style.transition = `opacity 0.35s, transform 0.45s cubic-bezier(0.16,1,0.3,1)`;
+        }, subStart + i * 45);
+    });
+
+    // Dismiss after all letters have settled
+    const totalDuration = subStart + subChars.length * 45 + 600;
+    setTimeout(() => {
+        pre.classList.add('out');
+        setTimeout(() => {
+            pre.style.display = 'none';
+            document.body.style.overflow = '';
+        }, 900);
+    }, totalDuration);
+}
+
+// ── CUSTOM CURSOR ────────────────────────────────────────────────
+function initCursor() {
+    const dot  = document.getElementById('c-dot');
+    const ring = document.getElementById('c-ring');
+    let mx = 0, my = 0; // mouse
+    let rx = 0, ry = 0; // ring (lerped)
+
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX;
+        my = e.clientY;
+        dot.style.transform = `translate(${mx - 3.5}px, ${my - 3.5}px)`;
+    });
+
+    function lerpRing() {
+        rx += (mx - rx) * 0.11;
+        ry += (my - ry) * 0.11;
+        ring.style.transform = `translate(${rx - 18}px, ${ry - 18}px)`;
+        requestAnimationFrame(lerpRing);
+    }
+
+    lerpRing();
+
+    // Hover states on interactive elements
+    const hoverEls = document.querySelectorAll('a, button, .proj-card, .svc-card, .test-card, input, textarea, select, .page-dot');
+
+    hoverEls.forEach(el => {
+        el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+        el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+}
+
+// ── NAV ──────────────────────────────────────────────────────────
+function initNav() {
+    const nav = document.getElementById('nav');
+    const mob = document.getElementById('mobNav');
+    const ham = document.getElementById('hamburger');
+    const cls = document.getElementById('mobClose');
+
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 70);
+    }, { passive: true });
+
+    ham.addEventListener('click', () => {
+        mob.classList.add('open');
+        document.body.style.overflow = 'hidden';
+    });
+
+    cls.addEventListener('click', closeMob);
+
+    document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && mob.classList.contains('open')) closeMob();
+    });
+}
+
+function closeMob() {
+    document.getElementById('mobNav').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+window.closeMob = closeMob;
+
+// ── BOOK PAGE TURN ───────────────────────────────────────────────
+function initBookTurn() {
+    const pages      = Array.from(document.querySelectorAll('.book-page'));
+    const dots       = Array.from(document.querySelectorAll('.page-dot'));
+    const counter    = document.getElementById('pageCounter');
+    const TOTAL      = pages.length;
+    let current      = 0;
+    let turning      = false;
+
+    // Set initial z-indices — page 0 on top
+    function setStack() {
+        pages.forEach((p, i) => {
+            const offset = (i - current + TOTAL) % TOTAL;
+            p.style.zIndex = TOTAL - offset;
+        });
+    }
+
+    setStack();
+
+    function showLabel(page, dur) {
+        const lbl = page.querySelector('.pg-label');
+        if (!lbl) return;
+        lbl.animate(
+            [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
+            { duration: dur || 900, easing: 'ease-in-out', fill: 'both' }
+        );
+    }
+
+    function hideLabel(page) {
+        const lbl = page.querySelector('.pg-label');
+        if (!lbl) return;
+        lbl.animate(
+            [{ opacity: 1 }, { opacity: 0 }],
+            { duration: 400, easing: 'ease-in', fill: 'both' }
+        );
+    }
+
+    function goTo(next) {
+        if (turning || next === current) return;
+        turning = true;
+
+        const from = pages[current];
+        const to   = pages[next];
+        const DUR  = 900;
+
+        dots[current].classList.remove('active');
+        dots[next].classList.add('active');
+        counter.textContent = String(next + 1).padStart(2, '0') + ' / ' + String(TOTAL).padStart(2, '0');
+        from.classList.remove('active');
+        hideLabel(from);
+
+        // Place 'to' on top of 'from' — it fades in from invisible.
+        // 'from' never changes opacity so there is nothing to snap or flash.
+        from.style.zIndex = String(TOTAL + 1);
+        to.style.zIndex   = String(TOTAL + 2);
+
+        current = next;
+
+        // Fade IN the incoming page over the outgoing one.
+        const a = to.animate(
+            [{ opacity: 0 }, { opacity: 1 }],
+            { duration: DUR, easing: 'ease-in-out', fill: 'both' }
+        );
+
+        // Label fades in simultaneously with the picture
+        showLabel(to, DUR);
+
+        a.onfinish = () => {
+            to.style.opacity = '1';
+            a.cancel();
+            to.style.opacity = '';
+            setStack();
+            pages[current].classList.add('active');
+            turning = false;
+        };
+    }
+
+    function nextPage() {
+        goTo((current + 1) % TOTAL);
+    }
+
+    // Auto advance every 4.5s
+    let autoTimer = setInterval(nextPage, 4500);
+
+    function resetAuto() {
+        clearInterval(autoTimer);
+        autoTimer = setInterval(nextPage, 4500);
+    }
+
+    // Dot nav
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            goTo(i);
+            resetAuto();
+        });
+    });
+
+
+    // Set first page as active after preloader
+    setTimeout(() => {
+        pages[0].classList.add('active');
+        showLabel(pages[0]);
+    }, 2200);
+}
+
+// ── HORIZONTAL PINNED SCROLL — removed, now using grid layout ────
+
+// ── COUNT-UP STATS ───────────────────────────────────────────────
+function initCountUp() {
+    const stats = document.querySelectorAll('[data-count]');
+
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) return;
+            io.unobserve(entry.target);
+
+            const el     = entry.target;
+            const target = parseInt(el.dataset.count, 10);
+            const suffix = el.dataset.suffix || '';
+            const dur    = 1400;
+            const start  = performance.now();
+
+            function tick(now) {
+                const progress = Math.min((now - start) / dur, 1);
+                // Ease out cubic
+                const eased = 1 - Math.pow(1 - progress, 3);
+                el.textContent = Math.round(eased * target) + suffix;
+                if (progress < 1) requestAnimationFrame(tick);
+            }
+
+            requestAnimationFrame(tick);
+        });
+    }, { threshold: 0.5 });
+
+    stats.forEach(el => io.observe(el));
+}
+
+// ── SCROLL REVEAL ────────────────────────────────────────────────
+function initReveal() {
+    const revealEls = document.querySelectorAll('.reveal');
+    const titleEls  = document.querySelectorAll('.s-title');
+
+    const io = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('vis');
+                io.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.08 });
+
+    revealEls.forEach(el => io.observe(el));
+    titleEls.forEach(el => io.observe(el));
+}
+
+// ── MAGNETIC BUTTONS ─────────────────────────────────────────────
+function initMagnetic() {
+    document.querySelectorAll('.magnetic').forEach(el => {
+        const handleMove = e => {
+            const rect = el.getBoundingClientRect();
+            const x    = e.clientX - rect.left - rect.width  / 2;
+            const y    = e.clientY - rect.top  - rect.height / 2;
+            el.style.transform = `translate(${x * 0.22}px, ${y * 0.32}px)`;
+        };
+
+        const handleLeave = () => {
+            el.style.transform = '';
+            el.style.transition = 'transform 0.55s cubic-bezier(0.16,1,0.3,1)';
+            setTimeout(() => { el.style.transition = ''; }, 550);
+        };
+
+        el.addEventListener('mousemove',  handleMove);
+        el.addEventListener('mouseleave', handleLeave);
+    });
+}
+
+// ── PROJ CARD INNER PARALLAX ────────────────────────────────────
+document.querySelectorAll('.proj-card').forEach(card => {
+    const bg = card.querySelector('.proj-bg');
+    if (!bg) return;
+    card.addEventListener('mousemove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width  - 0.5; // -0.5 to 0.5
+        const y = (e.clientY - rect.top)  / rect.height - 0.5;
+        bg.style.transform = `translate(${x * 8}px, ${y * 6}px) scale(1.015)`;
+    });
+    card.addEventListener('mouseleave', () => {
+        bg.style.transition = 'transform 1.0s cubic-bezier(0.16,1,0.3,1)';
+        bg.style.transform  = '';
+        setTimeout(() => { bg.style.transition = ''; }, 1000);
+    });
+});
+
+// ── PARALLAX HERO MOUSE ──────────────────────────────────────────
+function initHeroParallax() {
+    const content = document.querySelector('.hero-content');
+    let targetX = 0, targetY = 0;
+    let curX = 0, curY = 0;
+
+    document.getElementById('hero').addEventListener('mousemove', e => {
+        const w = window.innerWidth, h = window.innerHeight;
+        targetX = (e.clientX / w - 0.5) * -16;
+        targetY = (e.clientY / h - 0.5) * -10;
+    });
+
+    function raf() {
+        curX += (targetX - curX) * 0.06;
+        curY += (targetY - curY) * 0.06;
+        content.style.transform = `translate(${curX}px, ${curY}px)`;
+        requestAnimationFrame(raf);
+    }
+
+    raf();
+}
+
+// ── CONTACT FORM ─────────────────────────────────────────────────
+function initForm() {
+    const form = document.getElementById('quoteForm');
+    const btn  = document.getElementById('submitBtn');
+
+    form.addEventListener('submit', e => {
+        e.preventDefault();
+
+        // Basic validation
+        let ok = true;
+        form.querySelectorAll('[required]').forEach(el => {
+            const valid = el.value.trim() !== '';
+            el.style.borderColor = valid ? '' : '#c0392b';
+            if (!valid) ok = false;
+        });
+
+        if (!ok) return;
+
+        btn.textContent = "Sent — We'll be in touch.";
+        btn.style.background = '#4a7c59';
+        btn.style.color = '#fff';
+        btn.disabled = true;
+    });
+}
+
+// ── INIT ─────────────────────────────────────────────────────────
+initPreloader();
+initCursor();
+initNav();
+initReveal();
+initCountUp();
+initForm();
+initMagnetic();
+
+// Delay heavier inits until after preloader
+setTimeout(() => {
+    initBookTurn();
+    // initHorizontalScroll(); — removed
+    initHeroParallax();
+}, 500);
+
+})();
+</script>
+
+
+</body>
+</html>
