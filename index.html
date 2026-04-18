@@ -2269,9 +2269,11 @@ nav :focus-visible {
             </div>
         </div>
 
-        <form class="contact-form reveal d1" id="quoteForm" name="quote-enquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate>
-            <input type="hidden" name="form-name" value="quote-enquiry">
-            <p hidden><input name="bot-field"></p>
+        <form class="contact-form reveal d1" id="quoteForm" action="https://api.web3forms.com/submit" method="POST" novalidate>
+            <input type="hidden" name="access_key" value="0167ce06-6222-4573-b00f-be4517a530a8">
+            <input type="hidden" name="subject" value="New Quote Enquiry — Mercer's Precision Painting">
+            <input type="hidden" name="from_name" value="Mercer's Painting Website">
+            <input type="checkbox" name="botcheck" style="display:none">
             <div class="form-row">
                 <div class="fg">
                     <label for="f-fn">First Name</label>
@@ -2666,10 +2668,10 @@ function initForm() {
 
         const data = new FormData(form);
 
-        fetch('/', {
+        fetch('https://api.web3forms.com/submit', {
             method: 'POST',
-            headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-            body: new URLSearchParams(data).toString(),
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(data)),
         })
         .then(() => {
             btn.textContent = "Sent — We'll be in touch.";
