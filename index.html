@@ -1652,11 +1652,12 @@ nav :focus-visible {
     /* Footer */
     footer { padding-left: 20px; padding-right: 20px; font-size: 13px; }
 
-    /* Hero 5 — wide landscape image, show full on mobile */
-    #page4 .pg-img {
+    /* Hero images — show full without cropping on mobile */
+    .hero { height: 56vw !important; }
+    .pg-img {
         background-size: contain !important;
         background-repeat: no-repeat !important;
-        background-position: center center !important;
+        background-position: top center !important;
         background-color: #0a0a0a !important;
     }
 }
