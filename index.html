@@ -1686,7 +1686,16 @@ nav :focus-visible {
     .pg-label { left: 20px; right: auto; bottom: 130px; text-align: left; }
     .pg-label-name { font-size: 18px; }
     .pg-label-tag { font-size: 10px; }
-    .page-nav { display: none; }
+    .page-nav {
+        right: auto;
+        left: 50%;
+        top: auto;
+        bottom: 90px;
+        transform: translateX(-50%);
+        flex-direction: row;
+        gap: 10px;
+    }
+    .page-dot { cursor: auto; width: 8px; height: 8px; }
     .page-counter { right: 20px; font-size: 11px; }
 
     /* Credentials strip */
