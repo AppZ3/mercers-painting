@@ -3,10 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mercer's Precision Painting | Painter Lennox Head, Byron Bay &amp; Northern Rivers NSW</title>
-    <meta name="description" content="Mercer's Precision Painting — licensed local painters serving Lennox Head, Byron Bay, Ballina, Bangalow &amp; the Northern Rivers. Residential, commercial &amp; industrial. Call for a free quote.">
+    <title>Painters Lennox Head, Byron Bay &amp; Northern Rivers | Mercer's Precision Painting</title>
+    <meta name="description" content="Licensed painters serving Lennox Head, Byron Bay, Ballina &amp; the Northern Rivers since 1999. Residential, commercial &amp; industrial. Free quotes. Call 0427 088 838.">
     <meta name="keywords" content="painter Lennox Head, painter Byron Bay, painter Ballina, painter Northern Rivers, house painter NSW, commercial painter Northern Rivers, painting contractor Byron Bay, painting company Lennox Head, Bangalow painter, residential painter Northern Rivers">
     <link rel="canonical" href="https://mercersprecisionpainting.com/">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1">
+    <meta name="author" content="Stanton Mercer">
+    <meta name="rating" content="general">
+    <meta name="distribution" content="global">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What areas does Mercer's Precision Painting service?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We service Lennox Head, Byron Bay, Ballina, Bangalow, Brunswick Heads, Mullumbimby and the wider Northern Rivers region of NSW. We also take on projects across the Gold Coast and Tweed Heads."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What painting services do you offer?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Residential interior and exterior painting, commercial painting, industrial painting, roof restoration, driveway coating, timber and deck staining, bathroom waterproofing, airless spraying, kitchen makeovers and swimming pool resurfacing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are you licensed and insured?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Mercer's Precision Painting is fully licensed, insured and OH&S compliant. Stanton Mercer holds a Certificate in Painting and Decorating with over 25 years of industry experience."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How long has Mercer's Precision Painting been operating?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Established in 1999, we have been serving the Northern Rivers region of NSW for over 25 years."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I get a quote?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Call 0427 088 838, email mercers.pp@gmail.com, or use the contact form on this site. We take on a limited number of projects at a time so reach out early."
+          }
+        }
+      ]
+    }
+    </script>
     <link rel="sitemap" type="application/xml" href="/sitemap.xml">
     <meta name="geo.region" content="AU-NSW">
     <meta name="geo.placename" content="Lennox Head, Northern Rivers, New South Wales">
@@ -73,6 +126,33 @@
       },
       "founder": {"@type": "Person", "name": "Stanton Mercer"},
       "foundingDate": "1999",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "5.0",
+        "reviewCount": "3",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "author": {"@type": "Person", "name": "David"},
+          "reviewBody": "We recently had our entire home repainted by Mercers Precision Painting, and we honestly couldn't have asked for a better experience from start to finish."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "author": {"@type": "Person", "name": "Claire"},
+          "reviewBody": "Five stars all the way! The painters from Mercers Precision Painting did an outstanding job on our home."
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {"@type": "Rating", "ratingValue": "5", "bestRating": "5"},
+          "author": {"@type": "Person", "name": "Debra White"},
+          "reviewBody": "So easy to deal with. They don't spill a drop and clean up along the way. Couldn't be happier with the results."
+        }
+      ],
       "sameAs": [
         "https://www.google.com/maps?cid=YOUR_GOOGLE_CID"
       ]
@@ -1420,12 +1500,30 @@ nav.scrolled {
 footer {
     background: var(--black);
     border-top: 1px solid rgba(255,255,255,0.055);
-    padding: 34px 64px;
+    padding: 50px 64px 24px;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
+    flex-direction: column;
+    gap: 24px;
 }
+
+.footer-nap {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.65);
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.footer-nap-block { display: flex; flex-direction: column; gap: 4px; }
+.footer-nap-block strong { color: var(--gold); font-family: var(--serif); font-weight: 500; font-size: 16px; margin-bottom: 4px; letter-spacing: 0.02em; }
+.footer-nap-block a { color: rgba(255,255,255,0.75); text-decoration: none; transition: color 0.3s; }
+.footer-nap-block a:hover { color: var(--gold); }
+
+footer > .footer-copy, footer > .footer-links { align-self: center; }
+footer { align-items: stretch; }
 
 .footer-logo {
     font-family: var(--serif);
@@ -1742,7 +1840,8 @@ nav :focus-visible {
     .form-row { grid-template-columns: 1fr; }
 
     /* Footer */
-    footer { padding-left: 20px; padding-right: 20px; font-size: 13px; }
+    footer { padding: 40px 20px 20px; font-size: 13px; }
+    .footer-nap { grid-template-columns: 1fr; gap: 20px; text-align: center; }
 
 
 }
@@ -2359,7 +2458,7 @@ nav :focus-visible {
                     </svg>
                     <div>
                         <div class="ci-label">Service Area</div>
-                        <div class="ci-value">Lennox Head &middot; Ballina &middot; Byron Bay<br>Northern Rivers NSW 2478</div>
+                        <div class="ci-value">5/15 Ross St, Lennox Head NSW 2478<br><span style="opacity:0.7;font-size:0.92em;">Serving Lennox Head, Ballina, Byron Bay, Bangalow &amp; Northern Rivers</span></div>
                     </div>
                 </div>
             </div>
