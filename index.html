@@ -2802,6 +2802,28 @@ setTimeout(() => {
     initHeroParallax();
 }, 500);
 
+// Touch swipe for hero on mobile
+(function() {
+    const hero = document.getElementById('hero');
+    if (!hero) return;
+    let startX = 0;
+    hero.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, {passive: true});
+    hero.addEventListener('touchend', e => {
+        const diff = startX - e.changedTouches[0].clientX;
+        if (Math.abs(diff) < 40) return;
+        const pages = Array.from(document.querySelectorAll('.book-page')).filter(p => getComputedStyle(p).display !== 'none');
+        const current = pages.findIndex(p => p.classList.contains('active'));
+        const next = diff > 0
+            ? Math.min(current + 1, pages.length - 1)
+            : Math.max(current - 1, 0);
+        if (next !== current) {
+            const idx = pages[next].id.replace('page','');
+            const dot = document.querySelector('.page-dot[data-page="' + idx + '"]');
+            if (dot) dot.click();
+        }
+    }, {passive: true});
+})();
+
 })();
 </script>
 
