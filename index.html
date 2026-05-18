@@ -566,7 +566,7 @@ nav.scrolled {
     color: var(--gold);
     margin-bottom: 22px;
     opacity: 0;
-    animation: fadeUp 0.7s 2.4s var(--spring) forwards;
+    animation: fadeUp 0.55s 0.5s var(--spring) forwards;
 }
 
 .hero-h1 {
@@ -578,7 +578,7 @@ nav.scrolled {
     letter-spacing: -0.01em;
     margin-bottom: 26px;
     opacity: 0;
-    animation: fadeUp 0.85s 2.6s var(--spring) forwards;
+    animation: fadeUp 0.7s 0.7s var(--spring) forwards;
 }
 
 .hero-h1 em {
@@ -594,7 +594,7 @@ nav.scrolled {
     max-width: 560px;
     margin-bottom: 44px;
     opacity: 0;
-    animation: fadeUp 0.7s 2.85s var(--spring) forwards;
+    animation: fadeUp 0.55s 0.95s var(--spring) forwards;
 }
 
 .hero-actions {
@@ -603,7 +603,7 @@ nav.scrolled {
     gap: 32px;
     pointer-events: all;
     opacity: 0;
-    animation: fadeUp 0.7s 3.05s var(--spring) forwards;
+    animation: fadeUp 0.55s 1.15s var(--spring) forwards;
 }
 
 
@@ -1857,6 +1857,10 @@ nav :focus-visible {
     }
 }
     </style>
+    <link rel="preload" as="image" href="crew.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="second-photo.jpeg">
+    <link rel="preload" as="image" href="photo-4.jpeg">
+    <link rel="preload" as="image" href="hero5-new.avif">
 </head>
 <body>
 
@@ -2761,11 +2765,12 @@ function initBookTurn() {
         showLabel(to, DUR);
 
         a.onfinish = () => {
+            // Pin destination to fully visible, leave animation 'fill: both' state in place.
             to.style.opacity = '1';
-            a.cancel();
-            to.style.opacity = '';
             setStack();
             pages[current].classList.add('active');
+            // Reset the previous page's inline opacity so it can fade in next time.
+            from.style.opacity = '';
             turning = false;
         };
     }
