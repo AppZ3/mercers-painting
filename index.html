@@ -1801,12 +1801,9 @@ nav :focus-visible {
     /* Hide hero slide 5 on mobile */
     #page4, .page-dot[data-page="4"] { display: none !important; }
     .page-counter { display: none !important; }
-    /* Hero 1. Zoom slightly out so middle 3 crew fit */
+    /* Hero 1: use portrait crop of crew photo on mobile so cover sizing is consistent across all pages (no letterbox/no shift during transitions) */
     #page0 .pg-img {
-        background-size: auto 80% !important;
-        background-position: center !important;
-        background-repeat: no-repeat !important;
-        background-color: var(--black) !important;
+        background-image: url('main-mobile-photo-hires.webp') !important;
     }
 
     /* Credentials strip */
@@ -1857,7 +1854,8 @@ nav :focus-visible {
     }
 }
     </style>
-    <link rel="preload" as="image" href="crew.webp" fetchpriority="high">
+    <link rel="preload" as="image" href="crew.webp" fetchpriority="high" media="(min-width: 601px)">
+    <link rel="preload" as="image" href="main-mobile-photo-hires.webp" fetchpriority="high" media="(max-width: 600px)">
     <link rel="preload" as="image" href="second-photo.jpeg">
     <link rel="preload" as="image" href="photo-4.jpeg">
     <link rel="preload" as="image" href="hero5-new.avif" media="(min-width: 601px)">
