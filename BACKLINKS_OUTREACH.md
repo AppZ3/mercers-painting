@@ -1,12 +1,12 @@
-# Local Backlinks Outreach Pack — Mercer's Precision Painting
+# Local Backlinks Outreach Pack. Mercer's Precision Painting
 
 This is the off-platform work that closes the ranking gap against older competitors. The website code is fully optimised; from here it's about getting trusted local sites to link to mercersprecisionpainting.com.
 
-Stanton (or Zac on his behalf) sends these emails, fills these directory profiles, and makes the calls. Time investment: ~3-5 hours spread over 2 weeks.
+Stanton (or Zac on his behalf) sends these emails, fills these directory profiles and makes the calls. Time investment: ~3-5 hours spread over 2 weeks.
 
 ---
 
-## 1. Free directory submissions (do these first — easiest backlinks)
+## 1. Free directory submissions (do these first. Easiest backlinks)
 
 Each takes 10-15 minutes. Use consistent NAP across every one (Name, Address, Phone identical to GBP).
 
@@ -24,18 +24,18 @@ Each takes 10-15 minutes. Use consistent NAP across every one (Name, Address, Ph
 
 **Directories to submit to** (priority order):
 
-1. **Hipages** — hipages.com.au/join — already plenty of painter listings, but Mercer's needs claim/profile. Highest local trust.
-2. **True Local** — truelocal.com.au — Australian, free tier, decent authority.
-3. **Yellow Pages Australia** — yellowpages.com.au — established, free basic listing.
-4. **Yelp Australia** — yelp.com.au — international but indexed by Google.
-5. **Localsearch** — localsearch.com.au — Australia-specific, already has Mercer's existing listing — claim it and update.
-6. **ServiceSeeking** — already has Mercer's profile, update with current info.
-7. **Oneflare** — already has Mercer's profile (4.9★, 43 reviews) — confirm contact details current.
-8. **Houzz** — houzz.com.au — design/renovation focus, good for painters.
-9. **Word of Mouth** — wordofmouth.com.au — reviews-focused, free profile.
-10. **Yelp Australia** — see #4.
+1. **Hipages**. Hipages.com.au/join. Already plenty of painter listings, but Mercer's needs claim/profile. Highest local trust.
+2. **True Local**. Truelocal.com.au. Australian, free tier, decent authority.
+3. **Yellow Pages Australia**. Yellowpages.com.au. Established, free basic listing.
+4. **Yelp Australia**. Yelp.com.au. International but indexed by Google.
+5. **Localsearch**. Localsearch.com.au. Australia-specific, already has Mercer's existing listing. Claim it and update.
+6. **ServiceSeeking**. Already has Mercer's profile, update with current info.
+7. **Oneflare**. Already has Mercer's profile (4.9★, 43 reviews). Confirm contact details current.
+8. **Houzz**. Houzz.com.au. Design/renovation focus, good for painters.
+9. **Word of Mouth**. Wordofmouth.com.au. Reviews-focused, free profile.
+10. **Yelp Australia**. See #4.
 
-Tip: keep a spreadsheet with each directory, the email/username used, login details, and link to the live listing. Reviewing them once a year keeps them ranking.
+Tip: keep a spreadsheet with each directory, the email/username used, login details and link to the live listing. Reviewing them once a year keeps them ranking.
 
 ---
 
@@ -54,11 +54,11 @@ Most chambers list member businesses on their site with a do-follow link. Annual
 **Email template:**
 
 ```
-Subject: New member enquiry — Mercer's Precision Painting (Lennox Head)
+Subject: New member enquiry. Mercer's Precision Painting (Lennox Head)
 
 Hi [Chamber team],
 
-I'm Stanton Mercer, owner of Mercer's Precision Painting in Lennox Head. We've been painting across the Northern Rivers since 1999 — residential, commercial, and a fair bit of work for local hospitality and retail.
+I'm Stanton Mercer, owner of Mercer's Precision Painting in Lennox Head. We've been painting across the Northern Rivers since 1999. Residential, commercial and a fair bit of work for local hospitality and retail.
 
 I'd like to enquire about joining the [Ballina / Byron] Chamber of Commerce. Could you send me through the membership levels and what's included?
 
@@ -80,7 +80,7 @@ Mercer's has done commercial work across the Northern Rivers. Some of those busi
 **Email template (warm outreach to existing client):**
 
 ```
-Subject: Quick favour — link from your site?
+Subject: Quick favour. Link from your site?
 
 Hi [Name],
 
@@ -88,7 +88,7 @@ Hope you're well. I'm doing some work on the website ([mercersprecisionpainting.
 
 One of the things that helps is getting a link from a real local business who's worked with us. Would you be open to adding Mercer's Precision Painting to a "suppliers" or "trusted trades" section on your site? Even a short mention with a link helps a lot.
 
-Happy to send over a 50-word blurb you can paste in — no work for you.
+Happy to send over a 50-word blurb you can paste in. No work for you.
 
 Thanks for considering it,
 Stanton
@@ -102,18 +102,18 @@ Stanton
 ### C. Northern Rivers community/news sites
 
 **Targets** (research current contributors before pitching):
-- echo.net.au (The Echo Northern Rivers) — local news
-- byronshire.com.au — community
-- northernrivers.com.au — regional
-- lennoxhead.org.au — town-specific
-- ballinachamber.com.au — already covered above
+- echo.net.au (The Echo Northern Rivers). Local news
+- byronshire.com.au. Community
+- northernrivers.com.au. Regional
+- lennoxhead.org.au. Town-specific
+- ballinachamber.com.au. Already covered above
 
 **Pitch:** offer expert commentary on a painting/home maintenance topic relevant to the Northern Rivers climate. Easier to get accepted than asking for a direct backlink.
 
 **Email template:**
 
 ```
-Subject: Expert quote on [topic] — Northern Rivers angle
+Subject: Expert quote on [topic]. Northern Rivers angle
 
 Hi [editor name],
 
@@ -186,7 +186,7 @@ Set up a simple spreadsheet:
 | Ballina Chamber | Membership | | | | |
 | [Existing client] | Local biz | | | | |
 
-Review monthly. Backlinks compound — 3-5 quality links a month over 6 months is what closes the gap on older competitors.
+Review monthly. Backlinks compound. 3-5 quality links a month over 6 months is what closes the gap on older competitors.
 
 ---
 
@@ -199,4 +199,4 @@ Week 4: Pitch one Northern Rivers community site with an expert-quote offer
 
 By end of month 1: 12-15 new referring domains pointing to mercersprecisionpainting.com.
 
-The compounding effect of even 5-6 quality local backlinks a month is what will move Mercer's into the top 3 for "painter [town]" searches across the Northern Rivers. Patience, consistency, and never buying links from anyone who emails offering them.
+The compounding effect of even 5-6 quality local backlinks a month is what will move Mercer's into the top 3 for "painter [town]" searches across the Northern Rivers. Patience, consistency and never buying links from anyone who emails offering them.
