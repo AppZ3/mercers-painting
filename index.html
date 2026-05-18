@@ -211,11 +211,11 @@ body {
     padding: 0 20px;
     box-sizing: border-box;
     overflow: hidden;
-    transition: transform 0.9s cubic-bezier(0.76, 0, 0.24, 1), opacity 0.6s;
+    transition: transform 0.6s cubic-bezier(0.5, 0, 0.2, 1), opacity 0.5s ease-out;
 }
 
 #preloader.out {
-    transform: scale(1.06);
+    transform: scale(1.02);
     opacity: 0;
     pointer-events: none;
 }
@@ -281,7 +281,7 @@ body {
     height: 100%;
     width: 0;
     background: var(--gold);
-    animation: barFill 0.9s 0.4s var(--ease) forwards;
+    animation: barFill 0.7s 0.25s var(--ease) forwards;
 }
 
 @keyframes barFill { to { width: 100%; } }
@@ -2606,33 +2606,43 @@ function initPreloader() {
 
     document.body.style.overflow = 'hidden';
 
+    // Set transitions up-front so each letter animates rather than snaps.
+    wordChars.forEach(el => {
+        el.style.transition = 'opacity 0.5s ease, transform 0.55s cubic-bezier(0.16,1,0.3,1)';
+    });
+    subChars.forEach(el => {
+        el.style.transition = 'opacity 0.4s ease, transform 0.45s cubic-bezier(0.16,1,0.3,1)';
+    });
+
     // Animate each letter of "Mercer's"
     wordChars.forEach((el, i) => {
         setTimeout(() => {
-            el.style.opacity    = '1';
-            el.style.transform  = 'translateY(0)';
-            el.style.transition = `opacity 0.45s, transform 0.6s cubic-bezier(0.16,1,0.3,1)`;
-        }, 200 + i * 75);
+            requestAnimationFrame(() => {
+                el.style.opacity   = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        }, 120 + i * 35);
     });
 
     // Animate each letter of "Precision Painting" after "Mercer's" finishes
-    const subStart = 200 + wordChars.length * 75 + 120;
+    const subStart = 120 + wordChars.length * 35 + 80;
     subChars.forEach((el, i) => {
         setTimeout(() => {
-            el.style.opacity    = '1';
-            el.style.transform  = 'translateY(0)';
-            el.style.transition = `opacity 0.35s, transform 0.45s cubic-bezier(0.16,1,0.3,1)`;
-        }, subStart + i * 45);
+            requestAnimationFrame(() => {
+                el.style.opacity   = '1';
+                el.style.transform = 'translateY(0)';
+            });
+        }, subStart + i * 22);
     });
 
-    // Dismiss after all letters have settled
-    const totalDuration = subStart + subChars.length * 45 + 600;
+    // Dismiss as soon as the last letter has finished its transition (with a short hold).
+    const totalDuration = subStart + subChars.length * 22 + 350;
     setTimeout(() => {
         pre.classList.add('out');
         setTimeout(() => {
             pre.style.display = 'none';
             document.body.style.overflow = '';
-        }, 900);
+        }, 600);
     }, totalDuration);
 }
 
@@ -2800,7 +2810,7 @@ function initBookTurn() {
     setTimeout(() => {
         pages[0].classList.add('active');
         showLabel(pages[0]);
-    }, 2200);
+    }, 1400);
 }
 
 // ── HORIZONTAL PINNED SCROLL. Removed, now using grid layout ────
