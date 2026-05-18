@@ -69,7 +69,7 @@
         header { border-bottom: 1px solid var(--line); padding: 18px 24px; background: #fff; }
         header .container { max-width: 1100px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
         header .brand { font-family: 'Playfair Display', Georgia, serif; font-size: 20px; font-weight: 700; color: var(--black); }
-        header nav a { margin-left: 20px; color: var(--black); font-size: 14px; }
+        header nav a { margin-left: 20px; color: var(--black); font-size: 14px; padding: 8px 0; display: inline-block; }
         header .cta { background: var(--black); color: #fff !important; padding: 10px 18px; border-radius: 4px; font-size: 14px; font-weight: 600; }
         header .cta:hover { background: var(--gold-text); text-decoration: none; }
         .breadcrumb { max-width: 1100px; margin: 16px auto 0; padding: 0 24px; font-size: 13px; color: var(--gray); }
@@ -113,7 +113,7 @@
         footer { background: var(--black); color: rgba(255,255,255,0.75); padding: 40px 24px; font-size: 14px; }
         footer .container { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 24px; }
         footer strong { color: #fff; }
-        footer a { color: rgba(255,255,255,0.75); }
+        footer a { color: rgba(255,255,255,0.75); padding: 4px 0; display: inline-block; }
         footer .footer-copy { margin-top: 24px; font-size: 13px; color: rgba(255,255,255,0.6); }
     </style>
 </head>
@@ -131,6 +131,7 @@
         </div>
     </header>
 
+    <main>
     <nav class="breadcrumb" aria-label="Breadcrumb">
         <a href="/">Home</a> &rsaquo; <a href="/services">Services</a> &rsaquo; Roof Restoration
     </nav>
@@ -254,6 +255,8 @@
         <p style="max-width:600px; margin:0 auto; color:rgba(255,255,255,0.75);">Free on-site inspection and written quote. We respond to enquiries within one business day.</p>
         <a href="/contact">Get a free quote</a>
     </div>
+
+    </main>
 
     <footer>
         <div class="container">
