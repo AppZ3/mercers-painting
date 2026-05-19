@@ -1805,10 +1805,12 @@ nav :focus-visible {
     /* Hide hero slide 5 on mobile */
     #page4, .page-dot[data-page="4"] { display: none !important; }
     .page-counter { display: none !important; }
-    /* Hero 1: use portrait crop of crew photo on mobile so cover sizing is consistent across all pages (no letterbox/no shift during transitions) */
-    #page0 .pg-img {
-        background-image: url('main-mobile-photo-hires.webp') !important;
-    }
+    /* Hero pages 0-2: serve mobile-sized versions so they finish loading before auto-rotate fires.
+       Desktop versions were 1.2-1.3MB each which took ~10s on 4G - longer than the 4.5s rotate interval,
+       causing the famous "half previous, half next" transition glitch on first pass. */
+    #page0 .pg-img { background-image: url('main-mobile-1080.webp') !important; }
+    #page1 .pg-img { background-image: url('second-photo-1080.webp') !important; }
+    #page2 .pg-img { background-image: url('photo-4-1080.webp') !important; }
 
     /* Credentials strip */
     .strip { padding: 10px 16px; gap: 10px 20px; justify-content: center; flex-wrap: wrap; }
@@ -1858,11 +1860,15 @@ nav :focus-visible {
     }
 }
     </style>
+    <!-- Desktop hero preloads -->
     <link rel="preload" as="image" href="crew.webp" fetchpriority="high" media="(min-width: 601px)">
-    <link rel="preload" as="image" href="main-mobile-photo-hires.webp" fetchpriority="high" media="(max-width: 600px)">
-    <link rel="preload" as="image" href="second-photo.jpeg">
-    <link rel="preload" as="image" href="photo-4.jpeg">
+    <link rel="preload" as="image" href="second-photo-1920.jpg" media="(min-width: 601px)">
+    <link rel="preload" as="image" href="photo-4-1920.jpg" media="(min-width: 601px)">
     <link rel="preload" as="image" href="hero5-new.avif" media="(min-width: 601px)">
+    <!-- Mobile hero preloads (smaller versions) -->
+    <link rel="preload" as="image" href="main-mobile-1080.webp" fetchpriority="high" media="(max-width: 600px)">
+    <link rel="preload" as="image" href="second-photo-1080.webp" media="(max-width: 600px)">
+    <link rel="preload" as="image" href="photo-4-1080.webp" media="(max-width: 600px)">
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=1920&h=1080&q=85">
 </head>
 <body>
@@ -1946,7 +1952,7 @@ nav :focus-visible {
          Format  : Landscape, min 1920×1080px
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page" id="page1">
-        <div class="pg-img" style="background-image:url('second-photo.jpeg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" style="background-image:url('second-photo-1920.jpg'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
         <div class="pg-label">
             <div class="pg-label-tag">Residential &middot; Exterior</div>
@@ -1960,7 +1966,7 @@ nav :focus-visible {
          Format  : Landscape, min 1920×1080px
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page" id="page2">
-        <div class="pg-img" style="background-image:url('photo-4.jpeg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" style="background-image:url('photo-4-1920.jpg'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
         <div class="pg-label">
             <div class="pg-label-tag">Interior &middot; Specialty Finish</div>
@@ -2719,6 +2725,21 @@ function initBookTurn() {
     let current      = 0;
     let turning      = false;
 
+    // Force-preload each hero image into memory so transitions never fire over a half-loaded background.
+    // The page-bg URL is read from computed style (post-media-query), so mobile gets the small webp variants.
+    const loaded = pages.map(() => false);
+    pages.forEach((p, i) => {
+        if (getComputedStyle(p).display === 'none') { loaded[i] = true; return; }
+        const imgEl = p.querySelector('.pg-img');
+        if (!imgEl) { loaded[i] = true; return; }
+        const bg = getComputedStyle(imgEl).backgroundImage;
+        const match = bg.match(/url\(["']?([^"')]+)["']?\)/);
+        if (!match) { loaded[i] = true; return; }
+        const im = new Image();
+        im.onload = im.onerror = () => { loaded[i] = true; };
+        im.src = match[1];
+    });
+
     // Set initial z-indices. Page 0 on top
     function setStack() {
         pages.forEach((p, i) => {
@@ -2789,6 +2810,16 @@ function initBookTurn() {
     }
 
     function nextPage() {
+        // Skip past any pages whose image isn't loaded yet (avoids flashing a blank or half-painted page).
+        let target = current;
+        for (let i = 0; i < TOTAL; i++) {
+            target = (target + 1) % TOTAL;
+            if (loaded[target] && getComputedStyle(pages[target]).display !== 'none') {
+                goTo(target);
+                return;
+            }
+        }
+        // Fallback: advance even if nothing reports loaded.
         goTo((current + 1) % TOTAL);
     }
 
