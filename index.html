@@ -762,7 +762,10 @@ nav.scrolled {
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10;
+    /* Above the sliding/transitioning .book-page elements (which climb to z-index 11-12
+       during their animation) so the strip never gets swept across by a moving page.
+       Was z-index: 10, which caused the strip to "disappear and reappear" on every slide. */
+    z-index: 60;
     /* Solid bg so the strip looks identical regardless of which hero is showing.
        Was rgba(18,18,18,0.75) + backdrop-filter blur(8px), which made the strip
        appear to "reload" on every hero transition as the blur recalculated. */
