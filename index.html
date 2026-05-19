@@ -1812,11 +1812,11 @@ nav :focus-visible {
         right: auto;
         left: 50%;
         top: auto;
-        /* Sits above the credentials strip. Strip can be 4-5 rows tall depending on
-           viewport width (~120-145px); 16px breathing room above that. z-index 70 keeps
-           the dots painted above both the sliding hero pages (z-index 11-12 during slide)
-           and the strip (z-index 60). */
-        bottom: 160px;
+        /* Stack from bottom: strip (z60, 0-~130px) → pg-label (130-180px) → dots (~200px).
+           bottom: 200px sits the dot row clearly above the per-page caption and the
+           credentials strip. z-index 70 keeps the dots painted above transitioning
+           hero pages (z11-12 during slide) and the strip (z60). */
+        bottom: 200px;
         transform: translateX(-50%);
         flex-direction: row;
         gap: 6px;
