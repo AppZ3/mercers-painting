@@ -487,6 +487,8 @@ nav.scrolled {
 .hero {
     position: relative;
     height: 100vh;
+    height: 100svh; /* small viewport height — stable across iOS/Android URL-bar collapse,
+                       so the bg-image's cover-crop doesn't recompute mid-transition. */
     min-height: 700px;
     overflow: hidden;
     background: var(--black);
@@ -504,8 +506,9 @@ nav.scrolled {
     inset: 0;
     background-size: cover;
     background-position: center;
-    image-rendering: -webkit-optimize-contrast;
-    image-rendering: crisp-edges;
+    /* image-rendering hints removed: crisp-edges/optimize-contrast caused jagged
+       upscale artifacts on high-DPR phones where the 1080-wide source is shown
+       on a 1170+ device-pixel-wide screen. Default smooth interpolation is correct. */
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
     transform: translateZ(0);
@@ -2737,8 +2740,13 @@ function initBookTurn() {
     let current      = 0;
     let turning      = false;
 
-    // Force-preload each hero image into memory so transitions never fire over a half-loaded background.
-    // The page-bg URL is read from computed style (post-media-query), so mobile gets the small webp variants.
+    // Force-preload each hero image AND wait for full decode before marking it ready.
+    // Plain new Image() onload fires when bytes are in cache, but the image may still be
+    // mid-decode when the CSS background paints, which on Android shows up as "half the
+    // previous image, half the next" during the transition. image.decode() blocks until
+    // the browser has decoded into a GPU bitmap. We also retain a reference to keep the
+    // decoded bitmap warm for the lifetime of the page.
+    const decoded = [];
     const loaded = pages.map(() => false);
     pages.forEach((p, i) => {
         if (getComputedStyle(p).display === 'none') { loaded[i] = true; return; }
@@ -2748,8 +2756,14 @@ function initBookTurn() {
         const match = bg.match(/url\(["']?([^"')]+)["']?\)/);
         if (!match) { loaded[i] = true; return; }
         const im = new Image();
-        im.onload = im.onerror = () => { loaded[i] = true; };
         im.src = match[1];
+        decoded[i] = im;
+        const ready = () => { loaded[i] = true; };
+        if (typeof im.decode === 'function') {
+            im.decode().then(ready, ready);
+        } else {
+            im.onload = im.onerror = ready;
+        }
     });
 
     // Set initial z-indices. Page 0 on top
@@ -2781,6 +2795,25 @@ function initBookTurn() {
     }
 
     function goTo(next) {
+        if (turning || next === current) return;
+        // If the target image isn't decoded yet (slow network), wait up to 1.5s before
+        // giving up and showing it anyway. Prevents a fade-in onto a half-decoded image.
+        if (!loaded[next]) {
+            const waitUntil = performance.now() + 1500;
+            const poll = () => {
+                if (loaded[next] || performance.now() > waitUntil) {
+                    goToNow(next);
+                } else {
+                    requestAnimationFrame(poll);
+                }
+            };
+            poll();
+            return;
+        }
+        goToNow(next);
+    }
+
+    function goToNow(next) {
         if (turning || next === current) return;
         turning = true;
 
