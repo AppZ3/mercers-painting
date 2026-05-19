@@ -79,7 +79,7 @@ const PROFILES = [
 const ENGINES = { chromium, webkit, firefox };
 
 const ROTATE_INTERVAL_MS = 4500; // matches autoRotate in initBookTurn
-const HERO_FADE_MS = 900;        // matches DUR in goTo
+const HERO_FADE_MS = 350;        // matches DUR in goTo (fast crossfade)
 
 async function run() {
     await fs.rm(OUT_DIR, { recursive: true, force: true });

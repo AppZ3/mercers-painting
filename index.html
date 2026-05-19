@@ -2781,7 +2781,7 @@ function initBookTurn() {
         if (!lbl) return;
         lbl.animate(
             [{ opacity: 0, transform: 'translateY(8px)' }, { opacity: 1, transform: 'translateY(0)' }],
-            { duration: dur || 900, easing: 'ease-in-out', fill: 'both' }
+            { duration: dur || 350, easing: 'ease-out', fill: 'both' }
         );
     }
 
@@ -2790,7 +2790,7 @@ function initBookTurn() {
         if (!lbl) return;
         lbl.animate(
             [{ opacity: 1 }, { opacity: 0 }],
-            { duration: 400, easing: 'ease-in', fill: 'both' }
+            { duration: 200, easing: 'ease-in', fill: 'both' }
         );
     }
 
@@ -2819,7 +2819,7 @@ function initBookTurn() {
 
         const from = pages[current];
         const to   = pages[next];
-        const DUR  = 900;
+        const DUR  = 350; // fast crossfade — the eye no longer perceives two overlapping images at once
 
         dots[current].classList.remove('active');
         dots[next].classList.add('active');
