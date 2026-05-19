@@ -632,21 +632,22 @@ nav.scrolled {
 }
 
 .page-dot {
-    width: 7px;
-    height: 7px;
-    border: 9px solid transparent; /* 25px clickable area (a11y); visible dot is the inner 7px */
+    width: 8px;
+    height: 8px;
+    border: 9px solid transparent; /* 26px clickable area (a11y); visible dot is the inner 8px */
     border-radius: 50%;
-    background: rgba(255,255,255,0.55);
+    background: rgba(255,255,255,0.9);
     background-clip: padding-box;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.45); /* keeps inactive dots visible on light hero images */
+    /* Outer dark halo so the dot is visible on any image, light or dark. */
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 2px 6px rgba(0,0,0,0.55);
     cursor: none;
     transition: background 0.3s, transform 0.3s;
 }
 
 .page-dot.active {
     background: var(--gold);
-    transform: scale(1.4);
-    box-shadow: 0 1px 6px rgba(0,0,0,0.5);
+    transform: scale(1.35);
+    box-shadow: 0 0 0 1px rgba(0,0,0,0.35), 0 2px 8px rgba(0,0,0,0.55);
 }
 
 .page-counter {
