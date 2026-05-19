@@ -919,7 +919,7 @@ nav.scrolled {
 ═══════════════════════════════════════════════════════════════ */
 #services {
     background: var(--charcoal);
-    background-image: url('services-bg.webp');
+    background-image: url('services-bg-1920.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1260,7 +1260,7 @@ nav.scrolled {
     max-width: unset;
     margin: 0;
     position: relative;
-    background-image: url('testimonials-bg.webp');
+    background-image: url('testimonials-bg-1920.webp');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -1811,6 +1811,17 @@ nav :focus-visible {
     #page0 .pg-img { background-image: url('main-mobile-1080.webp') !important; }
     #page1 .pg-img { background-image: url('second-photo-1080.webp') !important; }
     #page2 .pg-img { background-image: url('photo-4-1080.webp') !important; }
+
+    /* Section backgrounds: mobile-sized variants. background-attachment:fixed is expensive on mobile compositor,
+       and the desktop 1920 versions are still ~300KB; the 900 versions drop to ~75-96KB. */
+    #services {
+        background-image: url('services-bg-900.webp');
+        background-attachment: scroll;
+    }
+    #testimonials {
+        background-image: url('testimonials-bg-900.webp');
+        background-attachment: scroll;
+    }
 
     /* Credentials strip */
     .strip { padding: 10px 16px; gap: 10px 20px; justify-content: center; flex-wrap: wrap; }
