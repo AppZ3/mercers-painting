@@ -1818,6 +1818,10 @@ nav :focus-visible {
     #page1 .pg-img { background-image: url('second-photo-1080.webp') !important; }
     #page2 .pg-img { background-image: url('photo-4-1080.webp') !important; }
 
+    /* No bottom-up dark gradient on mobile — the strip already anchors the bottom
+       and the hero text sits high enough that it stays legible without the overlay. */
+    .pg-overlay { display: none; }
+
     /* Section backgrounds: mobile-sized variants. background-attachment:fixed is expensive on mobile compositor,
        and the desktop 1920 versions are still ~300KB; the 900 versions drop to ~75-96KB. */
     #services {
@@ -2815,13 +2819,25 @@ function initBookTurn() {
         goToNow(next);
     }
 
+    // Mobile uses a horizontal slide so two hero images are NEVER visible at the
+    // same time. Desktop keeps the elegant crossfade.
+    const mobileMQ = window.matchMedia('(max-width: 600px)');
+
     function goToNow(next) {
         if (turning || next === current) return;
+        if (mobileMQ.matches) {
+            slideTo(next);
+        } else {
+            crossfadeTo(next);
+        }
+    }
+
+    function crossfadeTo(next) {
         turning = true;
 
         const from = pages[current];
         const to   = pages[next];
-        const DUR  = 350; // fast crossfade — the eye no longer perceives two overlapping images at once
+        const DUR  = 350; // fast crossfade — eye no longer perceives two overlapping images at once
 
         dots[current].classList.remove('active');
         dots[next].classList.add('active');
@@ -2829,29 +2845,72 @@ function initBookTurn() {
         from.classList.remove('active');
         hideLabel(from);
 
-        // Place 'to' on top of 'from'. It fades in from invisible.
-        // 'from' never changes opacity so there is nothing to snap or flash.
         from.style.zIndex = String(TOTAL + 1);
         to.style.zIndex   = String(TOTAL + 2);
 
         current = next;
 
-        // Fade IN the incoming page over the outgoing one.
         const a = to.animate(
             [{ opacity: 0 }, { opacity: 1 }],
             { duration: DUR, easing: 'ease-in-out', fill: 'both' }
         );
 
-        // Label fades in simultaneously with the picture
         showLabel(to, DUR);
 
         a.onfinish = () => {
-            // Pin destination to fully visible, leave animation 'fill: both' state in place.
             to.style.opacity = '1';
             setStack();
             pages[current].classList.add('active');
-            // Reset the previous page's inline opacity so it can fade in next time.
             from.style.opacity = '';
+            turning = false;
+        };
+    }
+
+    function slideTo(next) {
+        turning = true;
+
+        const from = pages[current];
+        const to   = pages[next];
+        const DUR  = 450;
+        // Always slide forward (incoming image enters from the right). Predictable
+        // direction matches the auto-rotate's forward motion. Dot clicks slide the
+        // same way regardless of which dot was tapped.
+
+        dots[current].classList.remove('active');
+        dots[next].classList.add('active');
+        counter.textContent = String(next + 1).padStart(2, '0') + ' / ' + String(TOTAL).padStart(2, '0');
+        from.classList.remove('active');
+        hideLabel(from);
+
+        from.style.zIndex = String(TOTAL + 1);
+        to.style.zIndex   = String(TOTAL + 2);
+        // Pre-position the incoming page fully off-screen right so the first paint
+        // frame doesn't flash it at translateX(0).
+        to.style.transform = 'translateX(100%)';
+        to.style.opacity = '1';
+
+        current = next;
+
+        const fromAnim = from.animate(
+            [{ transform: 'translateX(0)' }, { transform: 'translateX(-100%)' }],
+            { duration: DUR, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', fill: 'both' }
+        );
+        const toAnim = to.animate(
+            [{ transform: 'translateX(100%)' }, { transform: 'translateX(0)' }],
+            { duration: DUR, easing: 'cubic-bezier(0.65, 0, 0.35, 1)', fill: 'both' }
+        );
+
+        showLabel(to, DUR);
+
+        toAnim.onfinish = () => {
+            fromAnim.cancel();
+            toAnim.cancel();
+            from.style.transform = '';
+            to.style.transform = '';
+            from.style.opacity = '';
+            to.style.opacity = '1';
+            setStack();
+            pages[current].classList.add('active');
             turning = false;
         };
     }
