@@ -1,3 +1,10 @@
 node_modules/
 .cross-browser-test/node_modules/
 .cross-browser-test/output/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
