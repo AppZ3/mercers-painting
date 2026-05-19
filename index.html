@@ -1789,9 +1789,14 @@ nav :focus-visible {
     /* Hero */
     .hero-content { padding: 0 20px 150px; justify-content: center; }
     .hero { width: 100% !important; margin: 0 !important; }
-    .hero-eyebrow { font-size: 12px; letter-spacing: 0.16em; }
-    .hero-h1 { font-size: clamp(32px, 9vw, 54px); }
-    .hero-sub { font-size: 15px; max-width: 100%; line-height: 1.7; }
+    /* Soft per-character darkening keeps title/eyebrow/sub legible on light
+       hero backgrounds (cream interiors etc) now that pg-overlay is hidden
+       on mobile. It darkens only the immediate halo around each glyph, not
+       a visible shaded area. */
+    .hero-eyebrow { font-size: 12px; letter-spacing: 0.16em; text-shadow: 0 1px 8px rgba(0,0,0,0.55); }
+    .hero-h1 { font-size: clamp(32px, 9vw, 54px); text-shadow: 0 2px 14px rgba(0,0,0,0.55); }
+    .hero-sub { font-size: 15px; max-width: 100%; line-height: 1.7; text-shadow: 0 1px 10px rgba(0,0,0,0.55); }
+    .pg-label-name, .pg-label-tag { text-shadow: 0 1px 8px rgba(0,0,0,0.55); }
     .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
     .hero-actions .btn { font-size: 13px; padding: 14px 24px; }
     .hero-scroll { display: none; }
