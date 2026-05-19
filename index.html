@@ -632,12 +632,13 @@ nav.scrolled {
 }
 
 .page-dot {
-    width: 6px;
-    height: 6px;
-    border: 9px solid transparent;
+    width: 7px;
+    height: 7px;
+    border: 9px solid transparent; /* 25px clickable area (a11y); visible dot is the inner 7px */
     border-radius: 50%;
-    background: rgba(255,255,255,0.25);
+    background: rgba(255,255,255,0.55);
     background-clip: padding-box;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.45); /* keeps inactive dots visible on light hero images */
     cursor: none;
     transition: background 0.3s, transform 0.3s;
 }
@@ -645,6 +646,7 @@ nav.scrolled {
 .page-dot.active {
     background: var(--gold);
     transform: scale(1.4);
+    box-shadow: 0 1px 6px rgba(0,0,0,0.5);
 }
 
 .page-counter {
@@ -1810,12 +1812,17 @@ nav :focus-visible {
         right: auto;
         left: 50%;
         top: auto;
-        bottom: 90px;
+        /* Sits above the credentials strip. Strip can be 4-5 rows tall depending on
+           viewport width (~120-145px); 16px breathing room above that. z-index 70 keeps
+           the dots painted above both the sliding hero pages (z-index 11-12 during slide)
+           and the strip (z-index 60). */
+        bottom: 160px;
         transform: translateX(-50%);
         flex-direction: row;
-        gap: 10px;
+        gap: 6px;
+        z-index: 70;
     }
-    .page-dot { cursor: auto; width: 8px; height: 8px; }
+    .page-dot { cursor: auto; width: 8px; height: 8px; border-width: 8px; }
     /* Hide hero slide 5 on mobile */
     #page4, .page-dot[data-page="4"] { display: none !important; }
     .page-counter { display: none !important; }
