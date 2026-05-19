@@ -487,8 +487,10 @@ nav.scrolled {
 .hero {
     position: relative;
     height: 100vh;
-    height: 100svh; /* small viewport height — stable across iOS/Android URL-bar collapse,
-                       so the bg-image's cover-crop doesn't recompute mid-transition. */
+    /* dvh (dynamic viewport height) grows/shrinks with the address bar so the
+       hero always fills the actual visible viewport. Avoids the gap that svh
+       left below the hero on Brave/Chrome Android when the URL bar collapsed. */
+    height: 100dvh;
     min-height: 700px;
     overflow: hidden;
     background: var(--black);

@@ -209,6 +209,29 @@ async function testProfile(profile, dir) {
         sweepResults.push({ idx: i });
     }
 
+    // URL bar collapse simulation. Real phones change the visible viewport
+    // when the address bar shrinks on scroll. Some Playwright device profiles
+    // already account for this, but to be safe we resize the page taller by
+    // 80px (typical address-bar height on Pixel/Galaxy in Chrome/Brave) and
+    // re-screenshot every visible hero. Anything that gets exposed below the
+    // hero (about section, gap, etc.) is a real-device layout bug.
+    const originalSize = page.viewportSize();
+    await page.setViewportSize({ width: originalSize.width, height: originalSize.height + 80 });
+    await page.waitForTimeout(300);
+    for (let i = 0; i < dots.length; i++) {
+        const visible = await dots[i].isVisible().catch(() => false);
+        if (!visible) continue;
+        await dots[i].click().catch(() => {});
+        await page.waitForTimeout(HERO_FADE_MS + 200);
+        await page.screenshot({ path: path.join(dir, `tall-page-${i}.png`), type: 'png' });
+    }
+
+    // Also a full-page screenshot so we can see the hero -> strip -> about
+    // boundary and verify the strip sits flush with no exposed gap.
+    await page.setViewportSize(originalSize);
+    await page.waitForTimeout(200);
+    await page.screenshot({ path: path.join(dir, 'zz-full-page.png'), type: 'png', fullPage: true });
+
     // Final summary write
     const summary = {
         profile: profile.name,
