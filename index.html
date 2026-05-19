@@ -758,9 +758,10 @@ nav.scrolled {
     left: 0;
     right: 0;
     z-index: 10;
-    background: rgba(18,18,18,0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    /* Solid bg so the strip looks identical regardless of which hero is showing.
+       Was rgba(18,18,18,0.75) + backdrop-filter blur(8px), which made the strip
+       appear to "reload" on every hero transition as the blur recalculated. */
+    background: #121212;
     padding: 14px 64px;
     display: flex;
     align-items: center;
