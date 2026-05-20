@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Painters Lennox Head, Byron Bay &amp; Northern Rivers | Mercer's Precision Painting</title>
-    <meta name="description" content="Licensed painters serving Lennox Head, Byron Bay, Ballina &amp; the Northern Rivers since 1999. Residential, commercial &amp; industrial. Free quotes. Call 0427 088 838.">
+    <title>Painters Lennox Head, Byron Bay and Northern Rivers | Mercer's Precision Painting</title>
+    <meta name="description" content="Licensed painters serving Lennox Head, Byron Bay, Ballina and the Northern Rivers since 1999. Residential, commercial and industrial. Free quotes. Call 0427 088 838.">
     <meta name="keywords" content="painter Lennox Head, painter Byron Bay, painter Ballina, painter Northern Rivers, house painter NSW, commercial painter Northern Rivers, painting contractor Byron Bay, painting company Lennox Head, Bangalow painter, residential painter Northern Rivers">
     <link rel="canonical" href="https://mercersprecisionpainting.com/">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1">
@@ -69,14 +69,14 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://mercersprecisionpainting.com/">
-    <meta property="og:title" content="Mercer's Precision Painting | Lennox Head &amp; Northern Rivers">
-    <meta property="og:description" content="Licensed painters serving Byron Bay, Lennox Head, Ballina &amp; the Northern Rivers. Residential, commercial &amp; industrial painting.">
+    <meta property="og:title" content="Mercer's Precision Painting | Lennox Head and Northern Rivers">
+    <meta property="og:description" content="Licensed painters serving Byron Bay, Lennox Head, Ballina and the Northern Rivers. Residential, commercial and industrial painting.">
     <meta property="og:image" content="https://mercersprecisionpainting.com/crew.webp">
     <meta property="og:locale" content="en_AU">
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mercer's Precision Painting | Northern Rivers NSW">
-    <meta name="twitter:description" content="Premium painting services across Byron Bay, Lennox Head &amp; the Northern Rivers.">
+    <meta name="twitter:description" content="Premium painting services across Byron Bay, Lennox Head and the Northern Rivers.">
     <meta name="twitter:image" content="https://mercersprecisionpainting.com/crew.webp">
     <!-- LocalBusiness Schema -->
     <script type="application/ld+json">
@@ -1896,7 +1896,42 @@ nav :focus-visible {
         transition-duration: 0.01ms !important;
     }
 }
-    </style>
+    
+/* A-6: skip-to-content link for keyboard users */
+.skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 1000;
+    background: #000;
+    color: #fff;
+    padding: 12px 18px;
+    text-decoration: none;
+    font-weight: 600;
+    border-radius: 0 0 4px 0;
+}
+.skip-link:focus {
+    left: 0;
+    outline: 2px solid var(--gold, #c4a882);
+    outline-offset: 2px;
+}
+
+
+/* S-2: service-card inner link — preserves card visual, makes whole card clickable */
+.svc-card-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+}
+.svc-card-link:hover { text-decoration: none; }
+.svc-card-link:focus-visible {
+    outline: 2px solid var(--gold, #c4a882);
+    outline-offset: 4px;
+    border-radius: 4px;
+}
+
+</style>
     <!-- Desktop hero preloads -->
     <link rel="preload" as="image" href="crew.webp" fetchpriority="high" media="(min-width: 601px)">
     <link rel="preload" as="image" href="second-photo-1920.jpg" media="(min-width: 601px)">
@@ -1909,6 +1944,8 @@ nav :focus-visible {
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=1920&h=1080&q=85">
 </head>
 <body>
+<a href="#main-content" class="skip-link">Skip to main content</a>
+
 
 <!-- Reusable SVG icons (hidden) -->
 <svg style="display:none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
@@ -1964,6 +2001,7 @@ nav :focus-visible {
 <!-- ══════════════════════════════════════════════════════════════
      HERO. BOOK PAGE TURN
 ═══════════════════════════════════════════════════════════════ -->
+<a id="main-content" tabindex="-1"></a>
 <section class="hero" id="hero" aria-label="Mercer's Precision Painting. Painters serving Lennox Head, Byron Bay and Northern Rivers NSW">
 
     <!-- ── PAGE 1 ── ════════════════════════════════════════════════
@@ -1975,9 +2013,9 @@ nav :focus-visible {
                    then delete the <div class="ph-badge ..."> block.
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page active" id="page0">
-        <div class="pg-img" style="background-image:url('crew.webp'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Mercer&#39;s Precision Painting crew at work, Lennox Head NSW" style="background-image:url('crew.webp'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Meet the Team</div>
             <div class="pg-label-name">Mercer's Precision Painting Crew</div>
         </div>
@@ -1989,9 +2027,9 @@ nav :focus-visible {
          Format  : Landscape, min 1920×1080px
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page" id="page1">
-        <div class="pg-img" style="background-image:url('second-photo-1920.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Modern Byron Bay residential exterior repaint" style="background-image:url('second-photo-1920.jpg'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Exterior</div>
             <div class="pg-label-name">Modern Byron Bay</div>
         </div>
@@ -2003,9 +2041,9 @@ nav :focus-visible {
          Format  : Landscape, min 1920×1080px
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page" id="page2">
-        <div class="pg-img" style="background-image:url('photo-4-1920.jpg'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Luxury Bangalow home interior with specialty finish" style="background-image:url('photo-4-1920.jpg'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Interior &middot; Specialty Finish</div>
             <div class="pg-label-name">Luxury Bangalow Home</div>
         </div>
@@ -2017,9 +2055,9 @@ nav :focus-visible {
          Format  : Landscape, min 1920×1080px
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page" id="page3">
-        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Lennox Head beachside residence, residential exterior" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Exterior</div>
             <div class="pg-label-name">Lennox Beachside Residence</div>
         </div>
@@ -2031,9 +2069,9 @@ nav :focus-visible {
          Format  : Landscape, min 1920×1080px
     ═══════════════════════════════════════════════════════════════ -->
     <div class="book-page" id="page4">
-        <div class="pg-img" style="background-image:url('hero5-new.avif'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Lennox Head new build, residential exterior painting" style="background-image:url('hero5-new.avif'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; New Build</div>
             <div class="pg-label-name">Lennox Head New Build</div>
         </div>
@@ -2041,9 +2079,9 @@ nav :focus-visible {
 
     <!-- ── PAGE 6 (Interior) ── -->
     <div class="book-page" id="page5">
-        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Residential interior living room repaint" style="background-image:url('https://images.unsplash.com/photo-1564078516393-cf04bd966897?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Interior</div>
             <div class="pg-label-name">Living room repaint</div>
         </div>
@@ -2051,9 +2089,9 @@ nav :focus-visible {
 
     <!-- ── PAGE 7 (Exterior) ── -->
     <div class="book-page" id="page6">
-        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Modern family home, residential exterior" style="background-image:url('https://images.unsplash.com/photo-1721815693498-cc28507c0ba2?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Exterior</div>
             <div class="pg-label-name">Modern family home</div>
         </div>
@@ -2061,9 +2099,9 @@ nav :focus-visible {
 
     <!-- ── PAGE 8 (Interior) ── -->
     <div class="book-page" id="page7">
-        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1705326701287-346fc37a2c86?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Open-plan residential interior refresh" style="background-image:url('https://images.unsplash.com/photo-1705326701287-346fc37a2c86?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Interior</div>
             <div class="pg-label-name">Open plan refresh</div>
         </div>
@@ -2071,9 +2109,9 @@ nav :focus-visible {
 
     <!-- ── PAGE 9 (Exterior) ── -->
     <div class="book-page" id="page8">
-        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Coastal architecture, residential exterior" style="background-image:url('https://images.unsplash.com/photo-1580587771525-78b9dba3b914?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Exterior</div>
             <div class="pg-label-name">Coastal architecture</div>
         </div>
@@ -2081,9 +2119,9 @@ nav :focus-visible {
 
     <!-- ── PAGE 10 (Interior) ── -->
     <div class="book-page" id="page9">
-        <div class="pg-img" style="background-image:url('https://images.unsplash.com/photo-1663811397207-418a92396ad5?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
+        <div class="pg-img" role="img" aria-label="Built-in joinery finish, residential interior" style="background-image:url('https://images.unsplash.com/photo-1663811397207-418a92396ad5?auto=format&fit=crop&w=1920&h=1080&q=85'); background-size:cover; background-position:center;"></div>
         <div class="pg-overlay"></div>
-        <div class="pg-label">
+        <div class="pg-label" aria-hidden="true">
             <div class="pg-label-tag">Residential &middot; Interior</div>
             <div class="pg-label-name">Built-in joinery finish</div>
         </div>
@@ -2160,12 +2198,12 @@ nav :focus-visible {
                 <div class="stat-l">Projects Completed</div>
             </div>
             <div class="stat reveal d2">
-                <div class="stat-n" data-count="7">0</div>
-                <div class="stat-l">Sectors of Expertise</div>
+                <div class="stat-n" data-count="8">0</div>
+                <div class="stat-l">Suburbs Serviced</div>
             </div>
             <div class="stat reveal d3">
-                <div class="stat-n" data-count="100" data-suffix="%">0</div>
-                <div class="stat-l">Client Satisfaction</div>
+                <div class="stat-n" data-count="13" data-suffix="+">0</div>
+                <div class="stat-l">Google Reviews</div>
             </div>
         </div>
     </div>
@@ -2218,7 +2256,7 @@ nav :focus-visible {
     <div class="svc-grid">
 
         <div class="svc-card reveal">
-            <div class="svc-num">01</div>
+            <a href="/interior-painting/" class="svc-card-link" aria-label="Residential, learn more"><div class="svc-num">01</div>
             <h3 class="svc-title">Residential</h3>
             <p class="svc-desc">Precision interior and exterior work for homes across the Northern Rivers, with new builds, renovations and coastal heritage restorations.</p>
             <ul class="svc-list">
@@ -2228,11 +2266,11 @@ nav :focus-visible {
                 <li>Feature walls &amp; colour consulting</li>
                 <li>Deck, fence &amp; pergola staining</li>
                 <li>Texture &amp; decorative finishes</li>
-            </ul>
+            </ul></a>
         </div>
 
         <div class="svc-card reveal d1">
-            <div class="svc-num">02</div>
+            <a href="/commercial-painting/" class="svc-card-link" aria-label="Commercial, learn more"><div class="svc-num">02</div>
             <h3 class="svc-title">Commercial</h3>
             <p class="svc-desc">Professional, minimal-disruption painting for offices, retail, hospitality and strata, delivered on schedule and to spec.</p>
             <ul class="svc-list">
@@ -2242,11 +2280,11 @@ nav :focus-visible {
                 <li>Specialty &amp; feature finishes</li>
                 <li>Heritage colour &amp; restoration</li>
                 <li>Anti-graffiti systems</li>
-            </ul>
+            </ul></a>
         </div>
 
         <div class="svc-card reveal d2">
-            <div class="svc-num">03</div>
+            <a href="/commercial-painting/" class="svc-card-link" aria-label="Industrial, learn more"><div class="svc-num">03</div>
             <h3 class="svc-title">Industrial</h3>
             <p class="svc-desc">Heavy-duty protective coatings for structures, plant and equipment, with marine-grade systems engineered for the Northern Rivers climate.</p>
             <ul class="svc-list">
@@ -2256,11 +2294,11 @@ nav :focus-visible {
                 <li>Marine-grade protective systems</li>
                 <li>Warehouses &amp; sheds</li>
                 <li>Line marking</li>
-            </ul>
+            </ul></a>
         </div>
 
         <div class="svc-card reveal d3">
-            <div class="svc-num">04</div>
+            <a href="/roof-restoration/" class="svc-card-link" aria-label="Roof Restoration, learn more"><div class="svc-num">04</div>
             <h3 class="svc-title">Roof Restoration</h3>
             <p class="svc-desc">Full roof restoration and protective coating services for residential and commercial roofs, extending lifespan and improving weather resistance.</p>
             <ul class="svc-list">
@@ -2270,11 +2308,11 @@ nav :focus-visible {
                 <li>Metal &amp; Colorbond roof painting</li>
                 <li>Tile roof restoration</li>
                 <li>Leak sealing &amp; waterproofing</li>
-            </ul>
+            </ul></a>
         </div>
 
         <div class="svc-card reveal d4">
-            <div class="svc-num">05</div>
+            <a href="/exterior-painting/" class="svc-card-link" aria-label="Driveways, learn more"><div class="svc-num">05</div>
             <h3 class="svc-title">Driveways</h3>
             <p class="svc-desc">Durable driveway coatings and resurfacing for concrete and asphalt surfaces, UV-stable, slip-resistant and built to last in the Northern Rivers climate.</p>
             <ul class="svc-list">
@@ -2284,11 +2322,11 @@ nav :focus-visible {
                 <li>Crack repair &amp; resurfacing</li>
                 <li>Colour &amp; decorative finishes</li>
                 <li>UV-stable topcoat application</li>
-            </ul>
+            </ul></a>
         </div>
 
         <div class="svc-card reveal d5">
-            <div class="svc-num">06</div>
+            <a href="/exterior-painting/" class="svc-card-link" aria-label="Timber Works, learn more"><div class="svc-num">06</div>
             <h3 class="svc-title">Timber Works</h3>
             <p class="svc-desc">Specialist timber finishing and preservation for decks, cladding, fences and joinery, protecting the natural character of wood in coastal environments.</p>
             <ul class="svc-list">
@@ -2298,7 +2336,7 @@ nav :focus-visible {
                 <li>Interior timber &amp; joinery</li>
                 <li>Sanding &amp; surface preparation</li>
                 <li>Timber preservation systems</li>
-            </ul>
+            </ul></a>
         </div>
 
     </div>
@@ -2946,10 +2984,12 @@ function initBookTurn() {
     }
 
     // Auto advance every 4.5s
-    let autoTimer = setInterval(nextPage, 4500);
+    // A-4: respect prefers-reduced-motion — skip auto-rotation for users with motion sensitivity preferences.
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    let autoTimer = reducedMotion ? null : setInterval(nextPage, 4500);
 
     function resetAuto() {
-        clearInterval(autoTimer);
+        if (autoTimer) clearInterval(autoTimer);
         autoTimer = setInterval(nextPage, 4500);
     }
 

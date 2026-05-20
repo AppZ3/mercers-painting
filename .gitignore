@@ -1,3 +1,4 @@
 node_modules/
 .cross-browser-test/node_modules/
 .cross-browser-test/output/
+.client-archive/
