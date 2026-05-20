@@ -663,56 +663,6 @@ nav.scrolled {
     animation: fadeIn 0.5s 3.5s forwards;
 }
 
-/* Scroll hint */
-.hero-scroll {
-    position: absolute;
-    bottom: 36px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 50;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 8px;
-    opacity: 0;
-    animation: fadeIn 0.8s 3.8s forwards;
-}
-
-.hero-scroll span {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
-}
-
-.scroll-mouse {
-    width: 22px;
-    height: 34px;
-    border: 1.5px solid rgba(255,255,255,0.25);
-    border-radius: 12px;
-    position: relative;
-    overflow: hidden;
-}
-
-.scroll-mouse::after {
-    content: '';
-    position: absolute;
-    top: 6px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 3px;
-    height: 6px;
-    background: var(--gold);
-    border-radius: 2px;
-    animation: scrollDot 2s 4s infinite;
-}
-
-@keyframes scrollDot {
-    0%, 100% { top: 6px; opacity: 1; }
-    80% { top: 18px; opacity: 0; }
-}
-
 /* ═══════════════════════════════════════════════════════════════
    BUTTONS
 ═══════════════════════════════════════════════════════════════ */
@@ -1805,7 +1755,6 @@ nav :focus-visible {
     .pg-label-name, .pg-label-tag { text-shadow: 0 1px 8px rgba(0,0,0,0.55); }
     .hero-actions { flex-direction: column; align-items: flex-start; gap: 14px; }
     .hero-actions .btn { font-size: 13px; padding: 14px 24px; }
-    .hero-scroll { display: none; }
     .pg-label { left: 20px; right: auto; bottom: 130px; text-align: left; }
     .pg-label-name { font-size: 18px; }
     .pg-label-tag { font-size: 10px; }
@@ -2155,12 +2104,6 @@ nav :focus-visible {
 
     <!-- Page counter -->
     <div class="page-counter" id="pageCounter">01 / 10</div>
-
-    <!-- Scroll indicator -->
-    <div class="hero-scroll" aria-hidden="true">
-        <div class="scroll-mouse"></div>
-        <span>Scroll</span>
-    </div>
 
     <!-- ── CREDENTIALS STRIP ──────────────────────────────────────── -->
     <div class="strip">
